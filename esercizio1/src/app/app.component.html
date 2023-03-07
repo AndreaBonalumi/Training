@@ -1,0 +1,31 @@
+<app-prova></app-prova>
+<br>
+<button mat-raised-button color="primary" (click) = "onClick($event)">Primary</button>
+<mat-form-field class="example-full-width">
+  <mat-label>Favorite food</mat-label>
+  <input matInput placeholder="Ex. Pizza" [(ngModel)]="title">
+</mat-form-field>
+<br>
+<p> {{title}} </p>
+<br>
+<br>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Username</mat-label>
+  <input matInput (input) = "onInput($event)" />
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="onClick($event)">Gioca</button>
+
+<div *ngIf="isVisible; then bloccoIf else bloccoElse"></div>
+<ng-template #bloccoElse>
+  <p> non sono visibile </p>
+</ng-template>
+<ng-template #bloccoIf>
+  <p>sono visibile</p>
+</ng-template>
+<!-- direttiva for: *ngFor = "let variabile of array; index, count, even, odd, First, Last.
+direttiva switch: [ngSwitch] = "variabile"> <p *ngSwitchCase="valore"> cosa fare </p> se è
+una stringa ci vogliono pure gli apici: *ngSwitchCase = "'valore'"....
+direttiva stile: cambiare stile in base ai dati, [ngStyle] = {CSS/JS}
+direttiva claase: cambia la classe html (più o meno come ngstyle), [ngClass] = "'nome classi': nome variabile"
+oppure "'nome classi' : condizioni, condizione ? 'nome classi' : 'nome classi' -->
