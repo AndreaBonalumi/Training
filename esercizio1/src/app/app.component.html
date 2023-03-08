@@ -28,4 +28,14 @@ direttiva switch: [ngSwitch] = "variabile"> <p *ngSwitchCase="valore"> cosa fare
 una stringa ci vogliono pure gli apici: *ngSwitchCase = "'valore'"....
 direttiva stile: cambiare stile in base ai dati, [ngStyle] = {CSS/JS}
 direttiva claase: cambia la classe html (più o meno come ngstyle), [ngClass] = "'nome classi': nome variabile"
-oppure "'nome classi' : condizioni, condizione ? 'nome classi' : 'nome classi' -->
+oppure "'nome classi' : condizioni, condizione ? 'nome classi' : 'nome classi'
+per l'ereditarietà da padre a figlio quando nella pagina html si va a chiamare la pagina figlia con <app-componente>
+</app-componente> si inserisce la variable in input nel primo comando associandola a cosa passare:
+<app-componente [dato] = "dati"> </app-componente>, nel componente figlio dovrà esserci il comando
+@Input() dato: tipo(any). Per eseuire una operazione contraria il comando nel componente figlio sarà @Output
+e il tipo di dato dovrà essere un evento (new EventEmitter<tipoDato>() ) per mandarlo dobbiamo chiamare la funzione
+ .emit(dato), quando il componente padre dovrà attentere il dato quando chiama il componente figlio sempre con un evento
+ <app-componente (nomeEvento) = "nomeFunzione"
+ il @ViewChild(nomeBlocco) nome !: ElementRef<HTMLtipoElement> quando in un blocco <ng-template #nomeBlocco>
+ si vogliono salvare ed trattare dati al compimento del blocco, il valore si prende con this.nome.nativeElement.cosaVogliamoPrendere
+ -->

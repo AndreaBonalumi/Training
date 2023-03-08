@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-prova1',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./prova1.component.css']
 })
 export class Prova1Component {
+  @Input() data: any;
 
 }
