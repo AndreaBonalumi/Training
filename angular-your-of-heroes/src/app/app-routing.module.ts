@@ -6,9 +6,8 @@ import {AppComponent} from "./app.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 
 let routes: Routes = [
-  {path: '', component: AppComponent},
   {path: 'heroes', component: HeroesComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: '', component: DashboardComponent},
   {path: 'heroes/:id', component: HeroDetailComponent},
 ];
 
