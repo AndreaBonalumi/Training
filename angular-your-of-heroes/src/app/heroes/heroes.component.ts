@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Hero} from '../hero';
 import {HeroService} from "../hero.service";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-heroes',
@@ -11,15 +10,21 @@ import {ActivatedRoute} from "@angular/router";
 export class HeroesComponent implements OnInit{
   heroes: Hero[] = [];
   displayedColumns: string[] = ['id', 'name', 'button'];
-  constructor(private heroService: HeroService, private route: ActivatedRoute) { }
+  constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
     this.getHeroes();
-    this.route.snapshot.paramMap.get('id')
   }
-
   getHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
   }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.heroService.addHero({ name } as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });  }
 }

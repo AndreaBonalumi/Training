@@ -10,4 +10,12 @@
     <input [(ngModel)]="hero.name" placeholder="name">
   </mat-card-actions>
 </mat-card>
-<button mat-raised-button color="primary" (click)="goBack()">Back</button>
+<mat-divider></mat-divider>
+<section>
+  <div class="example-label">
+    <button mat-raised-button color="primary" (click)="goBack()">Back</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+    <button mat-raised-button color="primary" (click)="delete(hero)">Delete</button>
+  </div>
+</section>
+
