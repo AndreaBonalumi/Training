@@ -1,8 +1,13 @@
-<div *ngIf="hero && hero.visualizza">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div>id: {{hero.id}}</div>
-  <div >
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
-  </div>
-</div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{hero.name | uppercase}} Details</mat-card-title>
+    <mat-card-subtitle>id: {{hero.id}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <label>Hero name: </label>
+  </mat-card-content>
+  <mat-card-actions>
+    <input [(ngModel)]="hero.name" placeholder="name">
+  </mat-card-actions>
+</mat-card>
+<button mat-raised-button color="primary" (click)="goBack()">Back</button>
