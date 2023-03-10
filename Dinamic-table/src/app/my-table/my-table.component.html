@@ -1,0 +1,12 @@
+<table>
+  <thead>
+  <tr>
+    <th *ngFor="let colonna of tableConfig.headers">{{colonna.label}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let riga of data">
+    <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
+  </tr>
+  </tbody>
+</table>
