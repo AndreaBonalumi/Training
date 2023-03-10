@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {ButtonInterface} from "../buttonInterface";
 
 @Component({
   selector: 'app-button-custom',
@@ -6,7 +7,5 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./button-custom.component.css']
 })
 export class ButtonCustomComponent {
-  @Input() icon !: string;
-  @Input() text !: string;
-  @Input() customClass ?: string;
+  @Input() config !: ButtonInterface;
 }

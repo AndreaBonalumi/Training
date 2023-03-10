@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ButtonInterface} from "./buttonInterface";
 
 @Component({
   selector: 'app-root',
@@ -6,13 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  visualizza = false;
-  buttonConfig = {
-    icon : 'arrow-right',
-    text : 'bottone',
-    customClass: 'primary',
+
+  button1 : ButtonInterface = {
+    icon: 'bricks',
+    class: 'primary',
+    text: 'bottone'
+
   }
-  onSubmit(): void {
-    this.visualizza = true;
+  button2 : ButtonInterface = {
+    icon: 'arrow-right',
+    class: 'secondary',
+    text: 'ciao'
+
+  }
+  button3 : ButtonInterface = {
+    icon: 'heart',
+    class: 'primary',
+    text: 'pippo'
+
   }
 }
