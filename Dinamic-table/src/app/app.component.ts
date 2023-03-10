@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MyTableConfig} from "./my-table-config";
+import {Ordinamento} from "./ordinamento";
 
 
 @Component({
@@ -31,4 +32,8 @@ export class AppComponent {
     {key: 'due', label: 'sono'},
     {key: 'tre', label: 'riga5'},
   ];
+  ordinamento: Ordinamento = {
+    colonna: 'key',
+    verso: 'asc'
+  }
 }

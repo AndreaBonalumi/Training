@@ -1,7 +1,10 @@
 <table>
   <thead>
   <tr>
-    <th *ngFor="let colonna of tableConfig.headers">{{colonna.label}}</th>
+    <th *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
+      {{colonna.label}}
+      <mat-icon *ngIf="iconaOrdinamento[colonna.key]">{{ iconaOrdinamento[colonna.key] }}</mat-icon>
+    </th>
   </tr>
   </thead>
   <tbody>
