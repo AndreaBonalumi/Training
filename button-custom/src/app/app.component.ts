@@ -6,12 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'button-custom';
   visualizza = false;
   buttonConfig = {
-    icon : 'brinks',
+    icon : 'arrow-right',
     text : 'bottone',
-    customClass: '',
+    customClass: 'primary',
   }
   onSubmit(): void {
     this.visualizza = true;
