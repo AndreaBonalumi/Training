@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MyTableConfig} from "../my-table-config";
-import {Ordinamento} from "../ordinamento";
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
