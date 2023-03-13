@@ -6,10 +6,12 @@ import { MyTableComponent } from './my-table/my-table.component';
 
 import {MatIconModule} from '@angular/material/icon';
 import {FormsModule} from "@angular/forms";
+import { FilterPipe } from './filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     MyTableComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

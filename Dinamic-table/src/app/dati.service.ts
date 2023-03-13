@@ -12,4 +12,5 @@ export class DatiService {
   static getTable(): MyTableConfig {
     return TABLE;
   }
+  searchDati(t: string): void { }
 }

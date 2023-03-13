@@ -8,8 +8,15 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let riga of datiOrdinati">
+    <tr *ngFor="let riga of datiOrdinati | filter: searchText!: searchColumn!">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
     </tr>
   </tbody>
 </table>
+<div id="search-data">
+  <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
+  <select id="seleziona-colonna" [(ngModel)]="searchColumn">
+    <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
+  </select>
+  <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
+</div>

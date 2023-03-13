@@ -1,8 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MyTableConfig} from "../my-table-config";
-import {debounceTime, Observable, Subject, switchMap} from "rxjs";
-import {DatiService} from "../dati.service";
-
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
@@ -13,6 +10,8 @@ export class MyTableComponent implements OnInit{
   @Input() data !: any[];
   iconaOrdinamento !: string;
   datiOrdinati ?: any;
+  searchText ?: string;
+  searchColumn ?: string;
   ngOnInit() {
     this.tableConfig.order;
     this.datiOrdinati = this.data;
@@ -51,4 +50,5 @@ export class MyTableComponent implements OnInit{
       }
     });
   }
+  filtra(): void {}
 }
