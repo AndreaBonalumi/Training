@@ -10,8 +10,8 @@ export class MyTableComponent implements OnInit{
   @Input() data !: any[];
   iconaOrdinamento !: string;
   datiOrdinati ?: any;
-  searchText ?: string;
-  searchColumn ?: string;
+  searchText : string = '';
+  searchColumn : string = '';
   ngOnInit() {
     this.tableConfig.order;
     this.datiOrdinati = this.data;
@@ -50,5 +50,4 @@ export class MyTableComponent implements OnInit{
       }
     });
   }
-  filtra(): void {}
 }
