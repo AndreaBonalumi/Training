@@ -3,12 +3,12 @@
   <tr>
     <th *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
       {{colonna.label}}
-      <mat-icon *ngIf="iconaOrdinamento[colonna.key]">{{ iconaOrdinamento[colonna.key] }}</mat-icon>
+      <i *ngIf = "colonna.key == tableConfig.order.colonna">{{iconaOrdinamento}}</i>
     </th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let riga of data">
+  <tr *ngFor="let riga of datiOrdinati">
     <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
   </tr>
   </tbody>

@@ -7,18 +7,10 @@ import {Ordinamento} from "./ordinamento";
   providedIn: 'root'
 })
 export class DatiService {
-  getData(): any[] {
+  static getData(): any[] {
     return DATA;
   }
-  getTable(): MyTableConfig {
+  static getTable(): MyTableConfig {
     return TABLE;
-  }
-  orderColumn(key: string, ordinamento: Ordinamento, dati: any[]): any[] {
-  if (ordinamento.colonna == key) {
-    ordinamento.verso = (ordinamento.verso == 'asc') ? 'desc' : 'asc'
-  } else {
-    ordinamento.colonna = key
-    ordinamento.verso = 'asc'
-  }
   }
 }

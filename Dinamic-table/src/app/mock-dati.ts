@@ -20,5 +20,9 @@ export const TABLE : MyTableConfig = {
   headers: [
     {key: 'key', label: 'Key'},
     {key: 'label', label: 'Label'},
-  ]
+  ],
+  order: {
+    colonna: 'key',
+    verso: 'asc'
+  }
 }

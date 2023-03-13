@@ -9,35 +9,41 @@ import {Ordinamento} from "../ordinamento";
 export class MyTableComponent implements OnInit{
   @Input() tableConfig !: MyTableConfig;
   @Input() data !: any[];
-  @Input() ordinamentoDefault !: Ordinamento;
-  ordinamentoCorrente ?: Ordinamento;
-  iconaOrdinamento : any = {};
+  iconaOrdinamento !: string;
   datiOrdinati ?: any;
   ngOnInit() {
-    this.ordinamentoCorrente = this.ordinamentoDefault;
+    this.tableConfig.order;
     this.datiOrdinati = this.data;
-    if (this.iconaOrdinamento[this.ordinamentoCorrente.verso] == 'asc') {
-      this.iconaOrdinamento[this.ordinamentoCorrente.colonna] = 'arrow_upward'
+    if (this.tableConfig.order.verso == 'asc') {
+      this.iconaOrdinamento = '↑'
     } else {
-      this.iconaOrdinamento[this.ordinamentoCorrente.verso] = 'arrow_downward'
+      this.iconaOrdinamento = '↓'
     }
+    this.datiOrdinati = this.ordinamentoDati()
   }
 
   ordinamento(key: string): void {
-    if (this.ordinamentoCorrente!.colonna === key) {
-      this.ordinamentoCorrente!.verso = this.ordinamentoCorrente!.verso === 'asc' ? 'desc' : 'asc';
+    if (this.tableConfig.order.colonna === key) {
+      if (this.tableConfig.order.verso === 'asc') {
+        this.tableConfig.order.verso ='desc'
+        this.iconaOrdinamento = '↓'
+      } else {
+        this.tableConfig.order.verso = 'asc'
+        this.iconaOrdinamento = '↑'
+      }
     } else {
-      this.ordinamentoCorrente!.colonna = key;
-      this.ordinamentoCorrente!.verso = 'asc';
+      this.tableConfig.order.colonna = key;
+      this.tableConfig.order.verso = 'asc';
+      this.iconaOrdinamento = '↑'
     }
     this.datiOrdinati = this.ordinamentoDati();
   }
   ordinamentoDati(): any[] {
     return this.data.slice().sort((a, b) => {
-      if (a[this.ordinamentoCorrente!.colonna] < b[this.ordinamentoCorrente!.colonna]) {
-        return this.ordinamentoCorrente!.verso === 'asc' ? -1 : 1;
-      } else if (a[this.ordinamentoCorrente!.colonna] > b[this.ordinamentoCorrente!.colonna]) {
-        return this.ordinamentoCorrente!.verso === 'asc' ? 1 : -1;
+      if (a[this.tableConfig.order.colonna] < b[this.tableConfig.order.colonna]) {
+        return this.tableConfig.order.verso === 'asc' ? -1 : 1;
+      } else if (a[this.tableConfig.order.colonna] > b[this.tableConfig.order.colonna]) {
+        return this.tableConfig.order.verso === 'asc' ? 1 : -1;
       } else {
         return 0;
       }
