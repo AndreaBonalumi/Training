@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {DATA, TABLE} from "./mock-dati";
 import {MyTableConfig} from "./my-table-config";
-import {Ordinamento} from "./ordinamento";
 
 @Injectable({
   providedIn: 'root'

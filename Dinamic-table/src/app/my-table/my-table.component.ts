@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MyTableConfig} from "../my-table-config";
+import {debounceTime, Observable, Subject, switchMap} from "rxjs";
+import {DatiService} from "../dati.service";
+
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',

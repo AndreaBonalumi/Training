@@ -23,6 +23,7 @@ export const TABLE : MyTableConfig = {
   ],
   order: {
     colonna: 'key',
-    verso: 'asc'
-  }
+    verso: 'asc',
+  },
+  search: { columns: ['key', 'label']}
 }
