@@ -5,6 +5,15 @@
       {{colonna.label}}
       <i *ngIf = "colonna.key == tableConfig.order.colonna">{{iconaOrdinamento}}</i>
     </th>
+    <th>
+      <div id="search-data">
+        <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
+        <select id="seleziona-colonna" [(ngModel)]="searchColumn">
+          <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
+        </select>
+        <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
+      </div>
+    </th>
   </tr>
   </thead>
   <tbody>
@@ -13,10 +22,4 @@
     </tr>
   </tbody>
 </table>
-<div id="search-data">
-  <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
-  <select id="seleziona-colonna" [(ngModel)]="searchColumn">
-    <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
-  </select>
-  <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
-</div>
+
