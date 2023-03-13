@@ -16,9 +16,9 @@ export class MyTableComponent implements OnInit{
     this.tableConfig.order;
     this.datiOrdinati = this.data;
     if (this.tableConfig.order.verso == 'asc') {
-      this.iconaOrdinamento = '↑'
-    } else {
       this.iconaOrdinamento = '↓'
+    } else {
+      this.iconaOrdinamento = '↑'
     }
     this.datiOrdinati = this.ordinamentoDati()
   }
@@ -27,15 +27,15 @@ export class MyTableComponent implements OnInit{
     if (this.tableConfig.order.colonna === key) {
       if (this.tableConfig.order.verso === 'asc') {
         this.tableConfig.order.verso ='desc'
-        this.iconaOrdinamento = '↓'
+        this.iconaOrdinamento = '↑'
       } else {
         this.tableConfig.order.verso = 'asc'
-        this.iconaOrdinamento = '↑'
+        this.iconaOrdinamento = '↓'
       }
     } else {
       this.tableConfig.order.colonna = key;
       this.tableConfig.order.verso = 'asc';
-      this.iconaOrdinamento = '↑'
+      this.iconaOrdinamento = '↓';
     }
     this.datiOrdinati = this.ordinamentoDati();
   }
