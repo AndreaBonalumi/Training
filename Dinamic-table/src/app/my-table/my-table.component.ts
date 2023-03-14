@@ -11,8 +11,6 @@ export class MyTableComponent implements OnInit {
   iconaOrdinamento !: string;
   searchText: string = '';
   searchColumn: string = '';
-  selectedColumn !: string;
-
   ngOnInit() {
     if (this.tableConfig.order.verso == 'asc') {
       this.iconaOrdinamento = '↓'
