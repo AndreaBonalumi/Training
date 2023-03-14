@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Ordinamento} from "../interfaces/ordinamento";
 @Pipe({
   name: 'order'
 })
