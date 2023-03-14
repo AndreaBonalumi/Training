@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {DatiService} from "./dati.service";
+import {DatiService} from "./services/dati.service";
 
 @Component({
   selector: 'app-root',

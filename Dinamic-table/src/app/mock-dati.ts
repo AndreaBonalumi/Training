@@ -1,4 +1,4 @@
-import {MyTableConfig} from "./my-table-config";
+import {MyTableConfig} from "./interfaces/my-table-config";
 export const   DATA : any[] = [
   {key: 'uno', label: 'nome1'},
   {key: 'due', label: 'nome2'},

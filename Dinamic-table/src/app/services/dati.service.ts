@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {DATA, TABLE} from "./mock-dati";
-import {MyTableConfig} from "./my-table-config";
+import {DATA, TABLE} from "../mock-dati";
+import {MyTableConfig} from "../interfaces/my-table-config";
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +12,4 @@ export class DatiService {
   static getTable(): MyTableConfig {
     return TABLE;
   }
-  searchDati(t: string): void { }
 }

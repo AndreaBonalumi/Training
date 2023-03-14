@@ -3,7 +3,7 @@
   <tr>
     <th *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
       {{colonna.label}}
-      <i *ngIf = "colonna.key == tableConfig.order.colonna">{{iconaOrdinamento}}</i>
+      <i *ngIf = "colonna.key === tableConfig.order.colonna">{{iconaOrdinamento}}</i>
     </th>
     <th>
       <div id="search-data">
@@ -17,9 +17,8 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let riga of datiOrdinati | filter: searchText!: searchColumn!">
+    <tr *ngFor="let riga of data | order: tableConfig.order.verso: tableConfig.order.colonna | filter: searchText!: searchColumn!">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
     </tr>
   </tbody>
 </table>
-
