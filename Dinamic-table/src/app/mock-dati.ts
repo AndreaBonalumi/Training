@@ -25,5 +25,6 @@ export const TABLE : MyTableConfig = {
     colonna: 'key',
     verso: 'asc',
   },
-  search: { columns: ['key', 'label']}
+  search: { columns: ['key', 'label']},
+  pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4]}
 }

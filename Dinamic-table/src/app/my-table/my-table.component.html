@@ -12,13 +12,20 @@
           <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
         </select>
         <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
+        <label for="seleziona-pagina"> item per pagina: </label>
+        <select id="seleziona-pagina" [(ngModel)]="+tableConfig.pagination.itemPerPage">
+          <option *ngFor="let numero of tableConfig.pagination.itemPerPageOption">{{numero}}</option>
+        </select>
       </div>
     </th>
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let riga of data | order: tableConfig.order.verso: tableConfig.order.colonna | filter: searchText!: searchColumn!">
+    <tr *ngFor="let riga of data | pagination: start: end | order: tableConfig.order.verso: tableConfig.order.colonna | filter: searchText!: searchColumn!">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
     </tr>
   </tbody>
 </table>
+<button (click)="back()">Back</button>
+<button (click)="next()">Next</button>
+
