@@ -18,14 +18,23 @@
         </select>
       </div>
     </th>
+    <th>
+      <ng-container *ngFor="let azione of tableConfig.actions, index as i">
+      <button *ngIf="tableConfig.actionOnTop[i]" (click)="emitter('new','')">{{azione}}</button>
+      </ng-container>
+    </th>
   </tr>
   </thead>
   <tbody>
     <tr *ngFor="let riga of data | pagination: start: end: tableConfig.pagination.itemPerPage | order: tableConfig.order.verso: tableConfig.order.colonna | filter: searchText!: searchColumn!">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
+      <td>
+        <ng-container *ngFor="let azione of tableConfig.actions, index as i">
+          <button *ngIf="!tableConfig.actionOnTop[i]" (click)="emitter(azione, riga)">{{azione}}</button>
+        </ng-container>
+      </td>
     </tr>
   </tbody>
 </table>
 <button *ngIf="start > 0" (click)="back()">Back</button>
 <button *ngIf="start < data.length - (end - start)" (click)="next()">Next</button>
-

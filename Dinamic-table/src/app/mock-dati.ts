@@ -1,4 +1,6 @@
 import {MyTableConfig} from "./interfaces/my-table-config";
+import {MyTableActionEnum} from "./my-table-action-enum";
+
 export const   DATA : any[] = [
   {key: 'uno', label: 'nome1'},
   {key: 'due', label: 'nome2'},
@@ -25,6 +27,12 @@ export const TABLE : MyTableConfig = {
     colonna: 'key',
     verso: 'asc',
   },
-  search: { columns: ['key', 'label']},
-  pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4]}
+  search: {columns: ['key', 'label']},
+  pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4]},
+  actions: [
+    MyTableActionEnum.NEW_ROW,
+    MyTableActionEnum.EDIT,
+    MyTableActionEnum.DELETE,
+  ],
+  actionOnTop: [true, false, false]
 }

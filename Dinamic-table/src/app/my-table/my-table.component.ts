@@ -1,5 +1,7 @@
-import {Component, DoCheck, Input, OnInit} from '@angular/core';
+import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MyTableConfig} from "../interfaces/my-table-config";
+import {MyHeaders} from "../interfaces/my-headers";
+
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
@@ -13,6 +15,7 @@ export class MyTableComponent implements OnInit, DoCheck {
   searchColumn: string = '';
   start !: number;
   end !: number;
+  @Output() emit : EventEmitter<any> = new EventEmitter<any>()
   ordinamento(key: string): void {
     if (this.tableConfig.order.colonna === key) {
       if (this.tableConfig.order.verso === 'asc') {
@@ -46,7 +49,13 @@ export class MyTableComponent implements OnInit, DoCheck {
     }
   }
   ngDoCheck(): void {
-    this.tableConfig.pagination.itemPerPage = parseInt(String(this.tableConfig.pagination.itemPerPage))
-    this.end = this.start + this.tableConfig.pagination.itemPerPage
+    if ((this.end - this.start) != this.tableConfig.pagination.itemPerPage) {
+      this.tableConfig.pagination.itemPerPage = parseInt(String(this.tableConfig.pagination.itemPerPage))
+      this.end = this.start + this.tableConfig.pagination.itemPerPage
+    }
+  }
+  emitter(azione: string, dato: any): void {
+    const e = { key: azione, dato: dato }
+    this.emit.emit(e)
   }
 }

@@ -1,1 +1,4 @@
-<app-my-table [tableConfig]="headers" [data]="dati"></app-my-table>
+<app-my-table [tableConfig]="headers" [data]="dati" (emit)="gestisciEvento($event)"></app-my-table>
+<form *ngIf="!attivaEdit">
+  <label>Inserisci il valore (la chiave resterà uguale)</label>
+</form>
