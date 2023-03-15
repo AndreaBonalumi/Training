@@ -21,11 +21,11 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let riga of data | pagination: start: end | order: tableConfig.order.verso: tableConfig.order.colonna | filter: searchText!: searchColumn!">
+    <tr *ngFor="let riga of data | pagination: start: end: tableConfig.pagination.itemPerPage | order: tableConfig.order.verso: tableConfig.order.colonna | filter: searchText!: searchColumn!">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
     </tr>
   </tbody>
 </table>
-<button (click)="back()">Back</button>
-<button (click)="next()">Next</button>
+<button *ngIf="start > 0" (click)="back()">Back</button>
+<button *ngIf="start < data.length - (end - start)" (click)="next()">Next</button>
 

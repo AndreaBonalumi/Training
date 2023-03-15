@@ -29,18 +29,12 @@ export class MyTableComponent implements OnInit, DoCheck {
     }
   }
   next(): void {
-    this.tableConfig.pagination.itemPerPage = parseInt(String(this.tableConfig.pagination.itemPerPage))
-    if (this.end < this.data.length - this.tableConfig.pagination.itemPerPage) {
-      this.start += this.tableConfig.pagination.itemPerPage
-      this.end = this.start + this.tableConfig.pagination.itemPerPage
-    }
+    this.start += this.tableConfig.pagination.itemPerPage
+    this.end += this.tableConfig.pagination.itemPerPage
   }
   back(): void {
-    this.tableConfig.pagination.itemPerPage = parseInt(String(this.tableConfig.pagination.itemPerPage))
-    if (this.start >= this.tableConfig.pagination.itemPerPage) {
-      this.start -= this.tableConfig.pagination.itemPerPage
-      this.end = this.start + this.tableConfig.pagination.itemPerPage
-    }
+    this.start -= this.tableConfig.pagination.itemPerPage
+    this.end -= this.tableConfig.pagination.itemPerPage
   }
   ngOnInit() {
     this.start = 0
@@ -52,6 +46,7 @@ export class MyTableComponent implements OnInit, DoCheck {
     }
   }
   ngDoCheck(): void {
+    this.tableConfig.pagination.itemPerPage = parseInt(String(this.tableConfig.pagination.itemPerPage))
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
 }
