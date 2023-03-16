@@ -54,7 +54,7 @@ export class MyTableComponent implements OnInit, DoCheck {
       this.end = this.start + this.tableConfig.pagination.itemPerPage
     }
   }
-  emitter(azione: string, dato: any): void {
+  emitter(azione: string, dato ?: MyHeaders): void {
     const e = { key: azione, dato: dato }
     this.emit.emit(e)
   }

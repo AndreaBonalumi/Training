@@ -1,4 +1,17 @@
 <app-my-table [tableConfig]="headers" [data]="dati" (emit)="gestisciEvento($event)"></app-my-table>
-<form *ngIf="!attivaEdit">
-  <label>Inserisci il valore (la chiave resterà uguale)</label>
-</form>
+<ng-container *ngIf="edit">
+  <br> <label>Inserisci i valori per aggiornare</label> <br>
+  <ng-container *ngFor="let i of headers.headers">
+    <label>{{i.label}}: </label>
+    <input type="text" [(ngModel)]="dato[i.key]"> <br> <br>
+  </ng-container>
+  <button (click)="modificaDati()">Modifica</button>
+</ng-container>
+<ng-container *ngIf="new">
+  <br> <label>Inserisci valori del nuovo dato</label> <br>
+  <ng-container *ngFor="let i of headers.headers">
+    <label>{{i.label}}: </label>
+    <input type="text" [(ngModel)]="nuovoDato[i.key]"> <br> <br>
+  </ng-container>
+  <button (click)="aggiungiDato()">Inserisci</button>
+</ng-container>

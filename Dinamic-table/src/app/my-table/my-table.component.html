@@ -1,27 +1,23 @@
+ <div id="search-data">
+    <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
+    <select id="seleziona-colonna" [(ngModel)]="searchColumn">
+      <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
+    </select>
+    <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
+    <label for="seleziona-pagina"> item per pagina: </label>
+    <select id="seleziona-pagina" [(ngModel)]="tableConfig.pagination.itemPerPage">
+      <option *ngFor="let numero of tableConfig.pagination.itemPerPageOption">{{numero}}</option>
+    </select>
+  <ng-container *ngFor="let azione of tableConfig.actions, index as i">
+    <button *ngIf="tableConfig.actionOnTop[i]" (click)="emitter('new')">{{azione}}</button>
+  </ng-container>
+ </div>
 <table>
   <thead>
   <tr>
     <th *ngFor="let colonna of tableConfig.headers" (click)="ordinamento(colonna.key)">
       {{colonna.label}}
       <i *ngIf = "colonna.key === tableConfig.order.colonna">{{iconaOrdinamento}}</i>
-    </th>
-    <th>
-      <div id="search-data">
-        <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
-        <select id="seleziona-colonna" [(ngModel)]="searchColumn">
-          <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
-        </select>
-        <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
-        <label for="seleziona-pagina"> item per pagina: </label>
-        <select id="seleziona-pagina" [(ngModel)]="tableConfig.pagination.itemPerPage">
-          <option *ngFor="let numero of tableConfig.pagination.itemPerPageOption">{{numero}}</option>
-        </select>
-      </div>
-    </th>
-    <th>
-      <ng-container *ngFor="let azione of tableConfig.actions, index as i">
-      <button *ngIf="tableConfig.actionOnTop[i]" (click)="emitter('new','')">{{azione}}</button>
-      </ng-container>
     </th>
   </tr>
   </thead>
