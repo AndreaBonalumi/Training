@@ -1,17 +1,5 @@
 <app-my-table [tableConfig]="headers" [data]="dati" (emit)="gestisciEvento($event)"></app-my-table>
-<ng-container *ngIf="edit">
-  <br> <label>Inserisci i valori per aggiornare</label> <br>
-  <ng-container *ngFor="let i of headers.headers">
-    <label>{{i.label}}: </label>
-    <input type="text" [(ngModel)]="dato[i.key]"> <br> <br>
-  </ng-container>
-  <app-my-button (click)="modificaDati()" [config]="generaBottone('Modifica')"></app-my-button>
-</ng-container>
-<ng-container *ngIf="new">
-  <br> <label>Inserisci valori del nuovo dato</label> <br>
-  <ng-container *ngFor="let i of headers.headers">
-    <label>{{i.label}}: </label>
-    <input type="text" [(ngModel)]="nuovoDato[i.key]"> <br> <br>
-  </ng-container>
-  <app-my-button (click)="aggiungiDato()" [config]="generaBottone('Aggiungi')"></app-my-button>
-</ng-container>
+
+<app-my-action *ngIf="apriMyAction"
+               [table]="headers" [action]="action" [dato]="dato"
+                [data]="dati" (emit)="apriMyAction = false"></app-my-action>

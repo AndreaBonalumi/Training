@@ -1,0 +1,9 @@
+<div style="margin-top: 10px">
+  <br> <label>{{ form ? 'Inserisci i valori per aggiornare' : 'Inserisci valori del nuovo dato' }}</label> <br>
+  <ng-container *ngFor="let i of table.headers">
+    <label>{{i.label}}: </label>
+    <input type="text" [(ngModel)]="form ? dato[i.key] : newData[i.key]"> <br> <br>
+  </ng-container>
+  <app-my-button (click)="form ? modificaDati() : aggiungiDato()" [config]="generaBottone(form ? 'Modifica' : 'Aggiungi')"></app-my-button>
+  <app-my-button (click)="emit.emit()" [config]="generaBottone('Back')"></app-my-button>
+</div>

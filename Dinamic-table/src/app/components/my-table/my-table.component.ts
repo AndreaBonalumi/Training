@@ -1,7 +1,8 @@
 import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MyTableConfig} from "../../interfaces/my-table-config";
+import {ActionConfig, MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
+
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
@@ -15,6 +16,18 @@ export class MyTableComponent implements OnInit, DoCheck {
   searchColumn: string = '';
   start !: number;
   end !: number;
+  button_next: ActionConfig = {
+    onTop: false,
+    action: 'Next',
+    icon: 'map',
+    class: 'primary'
+  }
+  button_back: ActionConfig = {
+    onTop: false,
+    action: 'Back',
+    icon: 'map',
+    class: 'primary'
+  }
   @Output() emit : EventEmitter<any> = new EventEmitter<any>()
   ordinamento(key: string): void {
     if (this.tableConfig.order.colonna === key) {
@@ -58,22 +71,12 @@ export class MyTableComponent implements OnInit, DoCheck {
     const e = { key: azione, dato: dato }
     this.emit.emit(e)
   }
-  generaBottone(azione: string): any {
-    let button: ButtonInterface = {
-      icon: 'map',
-      text: azione,
-      class: 'primary'
+  generaBottone(azione ?: ActionConfig): ButtonInterface {
+    console.log('azione')
+    return {
+      icon: azione!.icon,
+      text: azione!.action,
+      class: azione!.class
     }
-    if(azione === 'new')
-      button.icon = 'postcard'
-    if(azione === 'edit') {
-      button.icon = 'pencil'
-      button.class = 'secondary'
-    }
-    if (azione === 'delete') {
-      button.icon = 'trash3'
-      button.class = 'secondary'
-    }
-    return button
   }
 }

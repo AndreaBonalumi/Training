@@ -1,16 +1,18 @@
  <div id="search-data">
-    <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
-    <select id="seleziona-colonna" [(ngModel)]="searchColumn">
+   <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
+   <div class="search">
+    <select id="seleziona-colonna" [(ngModel)]="searchColumn" style="margin-right: 10px">
       <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
     </select>
     <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
-    <label for="seleziona-pagina"> item per pagina: </label>
-    <select id="seleziona-pagina" [(ngModel)]="tableConfig.pagination.itemPerPage">
-      <option *ngFor="let numero of tableConfig.pagination.itemPerPageOption">{{numero}}</option>
-    </select>
-  <ng-container *ngFor="let azione of tableConfig.actions, index as i">
-    <app-my-button *ngIf="tableConfig.actionOnTop[i]" (click)="emitter(azione)" [config]="generaBottone(azione)"></app-my-button>
-  </ng-container>
+   </div>
+   <label for="seleziona-pagina"> item per pagina: </label>
+   <select id="seleziona-pagina" [(ngModel)]="tableConfig.pagination.itemPerPage" style="width: 5%; margin-bottom: 10px">
+     <option *ngFor="let numero of tableConfig.pagination.itemPerPageOption">{{numero}}</option>
+   </select>
+   <ng-container *ngFor="let azione of tableConfig.actions, index as i">
+    <app-my-button *ngIf="azione.onTop" (click)="emitter(azione.action)" [config]="generaBottone(azione)"></app-my-button>
+   </ng-container>
  </div>
 <table>
   <thead>
@@ -22,15 +24,15 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let riga of data | pagination: start: end: tableConfig.pagination.itemPerPage | order: tableConfig.order.verso: tableConfig.order.colonna | filter: searchText!: searchColumn!">
+    <tr *ngFor="let riga of data | filter: searchText!: searchColumn! | pagination: start: end: tableConfig.pagination.itemPerPage | order: tableConfig.order.verso: tableConfig.order.colonna">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td>
-        <ng-container *ngFor="let azione of tableConfig.actions, index as i">
-          <app-my-button *ngIf="!tableConfig.actionOnTop[i]" (click)="emitter(azione, riga)" [config]="generaBottone(azione)"></app-my-button>
+        <ng-container *ngFor="let azione of tableConfig.actions">
+          <app-my-button *ngIf="!azione.onTop" (click)="emitter(azione.action, riga)" [config]="generaBottone(azione)"></app-my-button>
         </ng-container>
       </td>
     </tr>
   </tbody>
 </table>
-<app-my-button *ngIf="start > 0" (click)="back()" [config]="generaBottone('Back')"></app-my-button>
-<app-my-button *ngIf="start < data.length - (end - start)" (click)="next()" [config]="generaBottone('Next')"></app-my-button>
+<app-my-button *ngIf="start > 0" (click)="back()" [config]="generaBottone(button_back)"></app-my-button>
+<app-my-button *ngIf="start < data.length - (end - start)" (click)="next()" [config]="generaBottone(button_next)"></app-my-button>
