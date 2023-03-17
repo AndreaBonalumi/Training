@@ -1,5 +1,5 @@
 import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ActionConfig, MyTableConfig} from "../../interfaces/my-table-config";
+import {MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 
@@ -16,20 +16,19 @@ export class MyTableComponent implements OnInit, DoCheck {
   searchColumn: string = '';
   start !: number;
   end !: number;
-  button_next: ActionConfig = {
-    onTop: false,
-    action: 'Next',
+  button_next: ButtonInterface = {
+    text: 'Next',
     icon: 'map',
     class: 'primary'
   }
-  button_back: ActionConfig = {
-    onTop: false,
-    action: 'Back',
+  button_back: ButtonInterface = {
+    text: 'Back',
     icon: 'map',
     class: 'primary'
   }
   @Output() emit : EventEmitter<any> = new EventEmitter<any>()
   ordinamento(key: string): void {
+    console.log('ordinamento')
     if (this.tableConfig.order.colonna === key) {
       if (this.tableConfig.order.verso === 'asc') {
         this.tableConfig.order.verso = 'desc'
@@ -45,10 +44,12 @@ export class MyTableComponent implements OnInit, DoCheck {
     }
   }
   next(): void {
+    console.log('next')
     this.start += this.tableConfig.pagination.itemPerPage
     this.end += this.tableConfig.pagination.itemPerPage
   }
   back(): void {
+    console.log('back')
     this.start -= this.tableConfig.pagination.itemPerPage
     this.end -= this.tableConfig.pagination.itemPerPage
   }
@@ -70,13 +71,5 @@ export class MyTableComponent implements OnInit, DoCheck {
   emitter(azione: string, dato ?: MyHeaders): void {
     const e = { key: azione, dato: dato }
     this.emit.emit(e)
-  }
-  generaBottone(azione ?: ActionConfig): ButtonInterface {
-    console.log('azione')
-    return {
-      icon: azione!.icon,
-      text: azione!.action,
-      class: azione!.class
-    }
   }
 }

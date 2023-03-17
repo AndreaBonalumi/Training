@@ -11,7 +11,7 @@
      <option *ngFor="let numero of tableConfig.pagination.itemPerPageOption">{{numero}}</option>
    </select>
    <ng-container *ngFor="let azione of tableConfig.actions, index as i">
-    <app-my-button *ngIf="azione.onTop" (click)="emitter(azione.action)" [config]="generaBottone(azione)"></app-my-button>
+    <app-my-button *ngIf="azione.onTop" (click)="emitter(azione.buttonAction.text)" [config]="azione.buttonAction"></app-my-button>
    </ng-container>
  </div>
 <table>
@@ -24,15 +24,15 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let riga of data | filter: searchText!: searchColumn! | pagination: start: end: tableConfig.pagination.itemPerPage | order: tableConfig.order.verso: tableConfig.order.colonna">
+    <tr *ngFor="let riga of data | filter: searchText!: searchColumn! | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td>
         <ng-container *ngFor="let azione of tableConfig.actions">
-          <app-my-button *ngIf="!azione.onTop" (click)="emitter(azione.action, riga)" [config]="generaBottone(azione)"></app-my-button>
+          <app-my-button *ngIf="!azione.onTop" (click)="emitter(azione.buttonAction.text, riga)" [config]="azione.buttonAction"></app-my-button>
         </ng-container>
       </td>
     </tr>
   </tbody>
 </table>
-<app-my-button *ngIf="start > 0" (click)="back()" [config]="generaBottone(button_back)"></app-my-button>
-<app-my-button *ngIf="start < data.length - (end - start)" (click)="next()" [config]="generaBottone(button_next)"></app-my-button>
+<app-my-button *ngIf="start > 0" (click)="back()" [config]="button_back"></app-my-button>
+<app-my-button *ngIf="start < data.length - (end - start)" (click)="next()" [config]="button_next"></app-my-button>

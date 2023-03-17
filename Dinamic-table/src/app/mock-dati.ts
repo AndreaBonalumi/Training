@@ -30,8 +30,26 @@ export const TABLE : MyTableConfig = {
   search: {columns: ['key', 'label']},
   pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4]},
   actions: [
-    {onTop: true, action: MyTableActionEnum.NEW_ROW, icon: 'postcard', class: 'primary'},
-    {onTop: false, action: MyTableActionEnum.EDIT, icon: 'pencil', class: 'secondary'},
-    {onTop: false, action: MyTableActionEnum.DELETE, icon: 'trash3', class: 'secondary'}
+    { onTop: true,
+      buttonAction: {
+          text: MyTableActionEnum.NEW_ROW,
+          icon: 'postcard',
+          class: 'primary'
+        }
+    },
+    { onTop: false,
+      buttonAction: {
+          text: MyTableActionEnum.EDIT,
+          icon: 'pencil',
+          class: 'secondary'
+        }
+    },
+    { onTop: false,
+      buttonAction: {
+        text: MyTableActionEnum.DELETE,
+        icon: 'trash3',
+        class: 'secondary'
+      }
+    },
   ]
 }

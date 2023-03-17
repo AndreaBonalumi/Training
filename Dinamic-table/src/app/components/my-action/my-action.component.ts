@@ -17,7 +17,21 @@ export class MyActionComponent implements OnInit{
   form !: boolean;
   newData : any = {};
   index : number = -1;
-
+  button_aggiungi : ButtonInterface = {
+    text: 'Aggiungi',
+    icon: 'cloud-plus',
+    class: 'secondary'
+  }
+  button_modifica : ButtonInterface = {
+    text: 'Modifica',
+    icon: 'pencil-square',
+    class: 'secondary'
+  }
+  button_back : ButtonInterface = {
+    text: 'Back',
+    class: 'secondary',
+    icon: 'skip-backward'
+  }
   ngOnInit(): void {
     this.form = this.action === 'edit';
     if (this.form)
@@ -53,13 +67,5 @@ export class MyActionComponent implements OnInit{
     this.data[this.index] = this.dato
     window.alert("dati modificati")
     this.emit.emit()
-  }
-  generaBottone(azione: string): ButtonInterface {
-    console.log('genera bottone my action')
-    return {
-      icon: 'pencil',
-      text: azione,
-      class: 'secondary'
-    }
   }
 }

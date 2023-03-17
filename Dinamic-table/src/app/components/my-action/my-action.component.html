@@ -4,6 +4,6 @@
     <label>{{i.label}}: </label>
     <input type="text" [(ngModel)]="form ? dato[i.key] : newData[i.key]"> <br> <br>
   </ng-container>
-  <app-my-button (click)="form ? modificaDati() : aggiungiDato()" [config]="generaBottone(form ? 'Modifica' : 'Aggiungi')"></app-my-button>
-  <app-my-button (click)="emit.emit()" [config]="generaBottone('Back')"></app-my-button>
+  <app-my-button (click)="form ? modificaDati() : aggiungiDato()" [config]="form ? button_modifica : button_aggiungi"></app-my-button>
+  <app-my-button (click)="emit.emit()" [config]="button_back"></app-my-button>
 </div>
