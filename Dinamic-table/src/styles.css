@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+/* Stile per la tabella */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Stile per le intestazioni della tabella */
+th {
+  font-weight: bold;
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Stile per le celle della tabella */
+td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Stile per le righe dispari della tabella */
+tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+/* Stile per le righe pari della tabella */
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
