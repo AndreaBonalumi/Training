@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {DatiService} from "./services/dati.service";
+import {ButtonInterface} from "../../../button-custom/src/app/buttonInterface";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -70,5 +72,12 @@ export class AppComponent{
     this.dati.push(this.nuovoDato)
     window.alert("dati aggiunti")
     this.new = false
+  }
+  generaBottone(azione: string): ButtonInterface {
+    return {
+      icon: 'pencil',
+      text: azione,
+      class: 'secondary'
+    }
   }
 }

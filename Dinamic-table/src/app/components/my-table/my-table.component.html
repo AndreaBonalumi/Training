@@ -9,7 +9,7 @@
       <option *ngFor="let numero of tableConfig.pagination.itemPerPageOption">{{numero}}</option>
     </select>
   <ng-container *ngFor="let azione of tableConfig.actions, index as i">
-    <app-button-custom *ngIf="tableConfig.actionOnTop[i]" (click)="emitter(azione)" style="margin: 10px" [config]="generaBottone(azione)"></app-button-custom>
+    <app-my-button *ngIf="tableConfig.actionOnTop[i]" (click)="emitter(azione)" [config]="generaBottone(azione)"></app-my-button>
   </ng-container>
  </div>
 <table>
@@ -26,11 +26,11 @@
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td>
         <ng-container *ngFor="let azione of tableConfig.actions, index as i">
-          <button *ngIf="!tableConfig.actionOnTop[i]" (click)="emitter(azione, riga)">{{azione}}</button>
+          <app-my-button *ngIf="!tableConfig.actionOnTop[i]" (click)="emitter(azione, riga)" [config]="generaBottone(azione)"></app-my-button>
         </ng-container>
       </td>
     </tr>
   </tbody>
 </table>
-<button *ngIf="start > 0" (click)="back()">Back</button>
-<button *ngIf="start < data.length - (end - start)" (click)="next()">Next</button>
+<app-my-button *ngIf="start > 0" (click)="back()" [config]="generaBottone('Back')"></app-my-button>
+<app-my-button *ngIf="start < data.length - (end - start)" (click)="next()" [config]="generaBottone('Next')"></app-my-button>

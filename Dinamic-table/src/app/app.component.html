@@ -5,7 +5,7 @@
     <label>{{i.label}}: </label>
     <input type="text" [(ngModel)]="dato[i.key]"> <br> <br>
   </ng-container>
-  <button (click)="modificaDati()">Modifica</button>
+  <app-my-button (click)="modificaDati()" [config]="generaBottone('Modifica')"></app-my-button>
 </ng-container>
 <ng-container *ngIf="new">
   <br> <label>Inserisci valori del nuovo dato</label> <br>
@@ -13,5 +13,5 @@
     <label>{{i.label}}: </label>
     <input type="text" [(ngModel)]="nuovoDato[i.key]"> <br> <br>
   </ng-container>
-  <button (click)="aggiungiDato()">Inserisci</button>
+  <app-my-button (click)="aggiungiDato()" [config]="generaBottone('Aggiungi')"></app-my-button>
 </ng-container>

@@ -1,7 +1,7 @@
 import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MyTableConfig} from "../interfaces/my-table-config";
-import {MyHeaders} from "../interfaces/my-headers";
-import {ButtonInterface} from "../../../../button-custom/src/app/buttonInterface";
+import {MyTableConfig} from "../../interfaces/my-table-config";
+import {MyHeaders} from "../../interfaces/my-headers";
+import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
@@ -66,10 +66,14 @@ export class MyTableComponent implements OnInit, DoCheck {
     }
     if(azione === 'new')
       button.icon = 'postcard'
-    if(azione === 'edit')
+    if(azione === 'edit') {
       button.icon = 'pencil'
-    if (azione === 'delete')
+      button.class = 'secondary'
+    }
+    if (azione === 'delete') {
       button.icon = 'trash3'
+      button.class = 'secondary'
+    }
     return button
   }
 }
