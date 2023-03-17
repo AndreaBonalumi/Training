@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { MyTableComponent } from './my-table/my-table.component';
+import {ButtonCustomComponent} from "../../../button-custom/src/app/button-custom/button-custom.component";
 
 import {MatIconModule} from '@angular/material/icon';
 import {FormsModule} from "@angular/forms";
@@ -16,6 +17,7 @@ import { PaginationPipe } from './pipe/pagination.pipe';
     FilterPipe,
     OrdinamentoPipe,
     PaginationPipe,
+    ButtonCustomComponent,
   ],
   imports: [
     BrowserModule,

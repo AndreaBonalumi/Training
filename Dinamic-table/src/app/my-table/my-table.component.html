@@ -9,7 +9,7 @@
       <option *ngFor="let numero of tableConfig.pagination.itemPerPageOption">{{numero}}</option>
     </select>
   <ng-container *ngFor="let azione of tableConfig.actions, index as i">
-    <button *ngIf="tableConfig.actionOnTop[i]" (click)="emitter('new')">{{azione}}</button>
+    <app-button-custom *ngIf="tableConfig.actionOnTop[i]" (click)="emitter(azione)" style="margin: 10px" [config]="generaBottone(azione)"></app-button-custom>
   </ng-container>
  </div>
 <table>

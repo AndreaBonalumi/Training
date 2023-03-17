@@ -1,7 +1,7 @@
 import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MyTableConfig} from "../interfaces/my-table-config";
 import {MyHeaders} from "../interfaces/my-headers";
-
+import {ButtonInterface} from "../../../../button-custom/src/app/buttonInterface";
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
@@ -57,5 +57,19 @@ export class MyTableComponent implements OnInit, DoCheck {
   emitter(azione: string, dato ?: MyHeaders): void {
     const e = { key: azione, dato: dato }
     this.emit.emit(e)
+  }
+  generaBottone(azione: string): any {
+    let button: ButtonInterface = {
+      icon: 'map',
+      text: azione,
+      class: 'primary'
+    }
+    if(azione === 'new')
+      button.icon = 'postcard'
+    if(azione === 'edit')
+      button.icon = 'pencil'
+    if (azione === 'delete')
+      button.icon = 'trash3'
+    return button
   }
 }

@@ -1,4 +1,4 @@
-<button class="btn btn-{{config.class}}">
+<button *ngIf="config" class="btn btn-{{config.class}}">
   <i class="bi bi-{{config.icon}}"></i>
   {{config.text}}
 </button>
