@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MyTableConfig} from "../../interfaces/my-table-config";
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
-
 @Component({
   selector: 'app-my-action',
   templateUrl: './my-action.component.html',
@@ -40,13 +39,11 @@ export class MyActionComponent implements OnInit{
       this.attivaNew()
   }
   attivaNew(): void {
-    console.log('attivaNew')
     Object.keys(this.table.headers).forEach((colonna) => {
       this.newData[colonna] = '';
     });
   }
   attivaEdit(): void {
-    console.log('attivaEdit')
     this.index = this.data.findIndex((item: { [x: string]: any; }) => {
       for (const column in item) {
         if (item[column] === this.dato[column]) {
@@ -57,13 +54,11 @@ export class MyActionComponent implements OnInit{
     })
   }
   aggiungiDato(): void {
-    console.log('aggiungiDato')
     this.data.push(this.newData)
     window.alert("dati aggiunti")
     this.emit.emit()
   }
   modificaDati(): void {
-    console.log('modificaDati')
     this.data[this.index] = this.dato
     window.alert("dati modificati")
     this.emit.emit()

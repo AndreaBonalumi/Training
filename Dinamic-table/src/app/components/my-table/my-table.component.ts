@@ -16,6 +16,8 @@ export class MyTableComponent implements OnInit, DoCheck {
   searchColumn: string = '';
   start !: number;
   end !: number;
+  pagination: number[] = []
+  pagineAttuali: number = 0;
   button_next: ButtonInterface = {
     text: 'Next',
     icon: 'map',
@@ -54,6 +56,12 @@ export class MyTableComponent implements OnInit, DoCheck {
     this.end -= this.tableConfig.pagination.itemPerPage
   }
   ngOnInit() {
+    this.pagineAttuali = Math.ceil(this.data.length / this.tableConfig.pagination.itemPerPage)
+    let count = 0
+    for (let i = 1; i < this.pagineAttuali + 1; i++) {
+      this.pagination[count] = i
+      count++
+    }
     this.start = 0
     this.end = this.start + this.tableConfig.pagination.itemPerPage
     if (this.tableConfig.order.verso == 'asc') {
@@ -63,6 +71,14 @@ export class MyTableComponent implements OnInit, DoCheck {
     }
   }
   ngDoCheck(): void {
+    if(this.pagineAttuali != Math.ceil(this.data.length / this.tableConfig.pagination.itemPerPage)) {
+      this.pagineAttuali = Math.ceil(this.data.length / this.tableConfig.pagination.itemPerPage)
+      let count = 0
+      for (let i = 1; i < this.pagineAttuali + 1; i++) {
+        this.pagination[count] = i
+        count++
+      }
+    }
     if ((this.end - this.start) != this.tableConfig.pagination.itemPerPage) {
       this.tableConfig.pagination.itemPerPage = parseInt(String(this.tableConfig.pagination.itemPerPage))
       this.end = this.start + this.tableConfig.pagination.itemPerPage
@@ -71,5 +87,9 @@ export class MyTableComponent implements OnInit, DoCheck {
   emitter(azione: string, dato ?: MyHeaders): void {
     const e = { key: azione, dato: dato }
     this.emit.emit(e)
+  }
+  changePagination(n: number): void {
+    this.start = this.tableConfig.pagination.itemPerPage * (n - 1)
+    this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
 }

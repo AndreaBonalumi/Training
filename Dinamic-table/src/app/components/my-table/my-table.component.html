@@ -1,7 +1,7 @@
  <div id="search-data">
    <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
    <div class="search">
-    <select id="seleziona-colonna" [(ngModel)]="searchColumn" style="margin-right: 10px">
+    <select id="seleziona-colonna" [(ngModel)]="searchColumn" style="margin-right: 10px; width: 7%">
       <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
     </select>
     <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
@@ -24,7 +24,7 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let riga of data | filter: searchText!: searchColumn! | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage">
+    <tr *ngFor="let riga of data | filter: searchText!: searchColumn | pagination: start: end: tableConfig.pagination.itemPerPage! | order: tableConfig.order.verso: tableConfig.order.colonna">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td>
         <ng-container *ngFor="let azione of tableConfig.actions">
@@ -34,5 +34,15 @@
     </tr>
   </tbody>
 </table>
-<app-my-button *ngIf="start > 0" (click)="back()" [config]="button_back"></app-my-button>
-<app-my-button *ngIf="start < data.length - (end - start)" (click)="next()" [config]="button_next"></app-my-button>
+ <div class="search">
+  <app-my-button *ngIf="start > 0" (click)="back()" [config]="button_back"></app-my-button>
+   <p *ngIf="(end / tableConfig.pagination.itemPerPage) > pagination[2]" style="margin-right: 10px; margin-left: 10px">...</p>
+  <ng-container *ngFor="let i = index of pagination.slice(0, pagineAttuali)">
+    <ng-container *ngIf="pagination[i] >= ((end / tableConfig.pagination.itemPerPage) - 2) && pagination[i] <= ((end / tableConfig.pagination.itemPerPage) + 2)">
+      <app-my-button *ngIf="!(pagination[i] == (end / tableConfig.pagination.itemPerPage))" [config]="{icon: 'circle', text: pagination[i].toString(), class: 'secondary'}" (click)="changePagination(pagination[i])"></app-my-button>
+      <app-my-button *ngIf="pagination[i] == (end / tableConfig.pagination.itemPerPage)" [config]="{icon: 'circle-fill', text: pagination[i].toString(), class: 'secondary'}"></app-my-button>
+    </ng-container>
+  </ng-container>
+   <p *ngIf="(end / tableConfig.pagination.itemPerPage) < pagination[pagination.length - 3]" style="margin-right: 10px">...</p>
+  <app-my-button *ngIf="start < data.length - (end - start)" (click)="next()" [config]="button_next"></app-my-button>
+ </div>
