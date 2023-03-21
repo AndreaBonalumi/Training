@@ -51,7 +51,7 @@ export const TABLE : MyTableConfig = {
         icon: 'trash3',
         class: 'secondary'
       },
-      isAdmin: (item: any): boolean => {
+      hidden: (item: any): boolean => {
         for(let column in item) {
           if(item[column] == 'admin')
             return true
