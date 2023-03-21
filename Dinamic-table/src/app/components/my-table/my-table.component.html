@@ -27,7 +27,7 @@
     <tr *ngFor="let riga of data | filter: searchText!: searchColumn | pagination: start: end: tableConfig.pagination.itemPerPage! | order: tableConfig.order.verso: tableConfig.order.colonna">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td *ngFor="let azione of tableConfig.actions">
-        <ng-container *ngIf="!isAdmin(riga, azione)">
+        <ng-container *ngIf="!tableConfig.lambdaFunction(riga, azione)">
           <app-my-button *ngIf="!azione.onTop" (click)="emitter(azione.buttonAction.text, riga)" [config]="azione.buttonAction"></app-my-button>
         </ng-container>
       </td>

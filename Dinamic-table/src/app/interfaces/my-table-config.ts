@@ -9,6 +9,7 @@ export interface MyTableConfig {
   search: MySearch;
   pagination: MyPagination;
   actions: ActionConfig[];
+  lambdaFunction : Function;
 }
 export interface ActionConfig {
   onTop: boolean;

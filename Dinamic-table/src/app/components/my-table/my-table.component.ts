@@ -1,5 +1,5 @@
 import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ActionConfig, MyTableConfig} from "../../interfaces/my-table-config";
+import { MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 
@@ -91,11 +91,4 @@ export class MyTableComponent implements OnInit, DoCheck {
     this.start = this.tableConfig.pagination.itemPerPage * (n - 1)
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
-  isAdmin = (item: any, azione: ActionConfig): boolean => {
-    for(let column in item) {
-      if(item[column] == 'admin' && azione.hidden)
-        return true
-    }
-    return  false
-  };
 }

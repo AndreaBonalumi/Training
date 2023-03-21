@@ -1,4 +1,4 @@
-import {MyTableConfig} from "./interfaces/my-table-config";
+import {ActionConfig, MyTableConfig} from "./interfaces/my-table-config";
 import {MyTableActionEnum} from "./my-table-action-enum";
 
 export const   DATA : any[] = [
@@ -63,5 +63,12 @@ export const TABLE : MyTableConfig = {
       },
       hidden: false
     },
-  ]
+  ],
+  lambdaFunction: (item: any, azione: ActionConfig): boolean => {
+    for(let column in item) {
+      if(item[column] == 'admin' && azione.hidden)
+        return true
+    }
+    return  false
+  },
 }
