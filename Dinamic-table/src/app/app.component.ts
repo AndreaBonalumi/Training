@@ -27,35 +27,35 @@ export class AppComponent{
     }
     if(e.key === 'Cambia ruolo') {
       this.dato = e.dato
-      if (this.dato['ruolo'] == 'admin')
-        this.dato['ruolo'] = 'utente'
-      else
-        this.dato['ruolo'] = 'admin'
-      this.index = this.dati.findIndex(riga => {
-        for (const column in riga) {
-          if (riga[column] === this.dato[column]) {
-            return true;
-          }
-        }
-        return false;
-      })
-      this.dati[this.index] = this.dato
+      this.cambiaRuolo()
     }
   }
   attivaCancella(dato: any): void {
+    this.index = this.dati.findIndex(item => {
+      return item === dato;
+    });
+    if (this.index >= 0) {
+      let appoggio = this.dati;
+      appoggio.splice(this.index, 1)
+      this.dati = appoggio
+      window.alert("elemento cancellato");
+    }
+    else
+      window.alert("elemento non esistente")
+  }
+  cambiaRuolo(): void {
+    if (this.dato['ruolo'] == 'admin')
+      this.dato['ruolo'] = 'utente'
+    else
+      this.dato['ruolo'] = 'admin'
     this.index = this.dati.findIndex(riga => {
       for (const column in riga) {
-        if (riga[column] === dato[column]) {
+        if (riga[column] === this.dato[column]) {
           return true;
         }
       }
       return false;
     })
-    if (this.index >= 0) {
-      this.dati.splice(this.index, 1);
-      window.alert("elemento cancellato");
-    }
-    else
-      window.alert("elemento non esistente")
+    this.dati[this.index] = this.dato
   }
 }

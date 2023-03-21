@@ -24,10 +24,10 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let riga of data | filter: searchText!: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage! | order: tableConfig.order.verso: tableConfig.order.colonna">
+    <tr *ngFor="let riga of data | filter: searchText!: searchColumn | pagination: start: end: tableConfig.pagination.itemPerPage! | order: tableConfig.order.verso: tableConfig.order.colonna">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td *ngFor="let azione of tableConfig.actions">
-        <ng-container *ngIf="!azione.hidden || riga['ruolo'] != 'admin'">
+        <ng-container *ngIf="!isAdmin(riga, azione)">
           <app-my-button *ngIf="!azione.onTop" (click)="emitter(azione.buttonAction.text, riga)" [config]="azione.buttonAction"></app-my-button>
         </ng-container>
       </td>
@@ -43,6 +43,6 @@
       <app-my-button *ngIf="pagination[i] == (end / tableConfig.pagination.itemPerPage)" [config]="{icon: 'circle-fill', text: pagination[i].toString(), class: 'secondary'}"></app-my-button>
     </ng-container>
   </ng-container>
-   <p *ngIf="(end / tableConfig.pagination.itemPerPage) < pagination[pagination.length - 3]" style="margin-right: 10px">...</p>
+   <p *ngIf="(end / tableConfig.pagination.itemPerPage) < pagination[pagineAttuali - 3]" style="margin-right: 10px">...</p>
   <app-my-button *ngIf="start < data.length - (end - start)" (click)="next()" [config]="button_next"></app-my-button>
  </div>

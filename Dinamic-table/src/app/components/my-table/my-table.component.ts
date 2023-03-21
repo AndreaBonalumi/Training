@@ -1,5 +1,5 @@
 import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MyTableConfig} from "../../interfaces/my-table-config";
+import {ActionConfig, MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 
@@ -30,7 +30,6 @@ export class MyTableComponent implements OnInit, DoCheck {
   }
   @Output() emit : EventEmitter<any> = new EventEmitter<any>()
   ordinamento(key: string): void {
-    console.log('ordinamento')
     if (this.tableConfig.order.colonna === key) {
       if (this.tableConfig.order.verso === 'asc') {
         this.tableConfig.order.verso = 'desc'
@@ -92,4 +91,11 @@ export class MyTableComponent implements OnInit, DoCheck {
     this.start = this.tableConfig.pagination.itemPerPage * (n - 1)
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
+  isAdmin = (item: any, azione: ActionConfig): boolean => {
+    for(let column in item) {
+      if(item[column] == 'admin' && azione.hidden)
+        return true
+    }
+    return  false
+  };
 }

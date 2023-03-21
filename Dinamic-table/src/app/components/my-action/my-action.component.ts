@@ -46,7 +46,7 @@ export class MyActionComponent implements OnInit{
   attivaEdit(): void {
     this.index = this.data.findIndex(item => {
       for (const column in this.dato) {
-        if (item[column] == this.dato[column]) {
+        if (item[column] === this.dato[column]) {
           return true;
         }
       }
