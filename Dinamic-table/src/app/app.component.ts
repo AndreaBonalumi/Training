@@ -44,10 +44,10 @@ export class AppComponent{
       window.alert("elemento non esistente")
   }
   cambiaRuolo(): void {
-    if (this.dato['ruolo'] == 'admin')
-      this.dato['ruolo'] = 'customer'
+    if (this.dato['role'] == 'admin')
+      this.dato['role'] = 'customer'
     else
-      this.dato['ruolo'] = 'admin'
+      this.dato['role'] = 'admin'
     this.index = this.dati.findIndex(riga => {
       for (const column in riga) {
         if (riga[column] === this.dato[column]) {
