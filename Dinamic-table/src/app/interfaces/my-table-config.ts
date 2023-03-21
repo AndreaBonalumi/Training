@@ -13,4 +13,5 @@ export interface MyTableConfig {
 export interface ActionConfig {
   onTop: boolean;
   buttonAction: ButtonInterface;
+  hidden: boolean;
 }

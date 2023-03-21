@@ -10,7 +10,7 @@
    <select id="seleziona-pagina" [(ngModel)]="tableConfig.pagination.itemPerPage" style="width: 5%; margin-bottom: 10px">
      <option *ngFor="let numero of tableConfig.pagination.itemPerPageOption">{{numero}}</option>
    </select>
-   <ng-container *ngFor="let azione of tableConfig.actions, index as i">
+   <ng-container *ngFor="let azione of tableConfig.actions">
     <app-my-button *ngIf="azione.onTop" (click)="emitter(azione.buttonAction.text)" [config]="azione.buttonAction"></app-my-button>
    </ng-container>
  </div>
@@ -24,10 +24,10 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let riga of data | filter: searchText!: searchColumn | pagination: start: end: tableConfig.pagination.itemPerPage! | order: tableConfig.order.verso: tableConfig.order.colonna">
+    <tr *ngFor="let riga of data | filter: searchText!: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage! | order: tableConfig.order.verso: tableConfig.order.colonna">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
-      <td>
-        <ng-container *ngFor="let azione of tableConfig.actions">
+      <td *ngFor="let azione of tableConfig.actions">
+        <ng-container *ngIf="!azione.hidden || riga['ruolo'] != 'admin'">
           <app-my-button *ngIf="!azione.onTop" (click)="emitter(azione.buttonAction.text, riga)" [config]="azione.buttonAction"></app-my-button>
         </ng-container>
       </td>

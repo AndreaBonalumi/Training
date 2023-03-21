@@ -10,7 +10,7 @@ export class MyActionComponent implements OnInit{
   @Input() table !: MyTableConfig;
   @Input() action !: string;
   @Input() dato ?: any;
-  @Input() data !: any;
+  @Input() data !: any[];
   @Output() emit : EventEmitter<any> = new EventEmitter<any>()
 
   form !: boolean;
@@ -44,14 +44,14 @@ export class MyActionComponent implements OnInit{
     });
   }
   attivaEdit(): void {
-    this.index = this.data.findIndex((item: { [x: string]: any; }) => {
-      for (const column in item) {
-        if (item[column] === this.dato[column]) {
+    this.index = this.data.findIndex(item => {
+      for (const column in this.dato) {
+        if (item[column] == this.dato[column]) {
           return true;
         }
       }
       return false;
-    })
+    });
   }
   aggiungiDato(): void {
     this.data.push(this.newData)

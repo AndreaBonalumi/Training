@@ -36,28 +36,32 @@ export const TABLE : MyTableConfig = {
         text: MyTableActionEnum.NEW_ROW,
         icon: 'postcard',
         class: 'primary'
-      }
+      },
+      hidden: false
     },
     { onTop: false,
       buttonAction: {
         text: MyTableActionEnum.EDIT,
         icon: 'pencil',
         class: 'secondary'
-      }
+      },
+      hidden: false
     },
     { onTop: false,
       buttonAction: {
         text: MyTableActionEnum.DELETE,
         icon: 'trash3',
         class: 'secondary'
-      }
+      },
+      hidden: true
     },
     { onTop: false,
       buttonAction: {
         text: 'Cambia ruolo',
         icon: 'arrow-downward',
         class: 'primary'
-      }
+      },
+      hidden: false
     },
   ]
 }
