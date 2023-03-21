@@ -37,7 +37,6 @@ export const TABLE : MyTableConfig = {
         icon: 'postcard',
         class: 'primary'
       },
-      hidden: false
     },
     { onTop: false,
       buttonAction: {
@@ -45,7 +44,6 @@ export const TABLE : MyTableConfig = {
         icon: 'pencil',
         class: 'secondary'
       },
-      hidden: false
     },
     { onTop: false,
       buttonAction: {
@@ -53,7 +51,6 @@ export const TABLE : MyTableConfig = {
         icon: 'trash3',
         class: 'secondary'
       },
-      hidden: true,
       isAdmin: (item: any): boolean => {
         for(let column in item) {
           if(item[column] == 'admin')
@@ -68,7 +65,6 @@ export const TABLE : MyTableConfig = {
         icon: 'arrow-downward',
         class: 'primary'
       },
-      hidden: false,
     },
   ],
 }
