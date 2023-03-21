@@ -45,7 +45,7 @@ export class AppComponent{
   }
   cambiaRuolo(): void {
     if (this.dato['ruolo'] == 'admin')
-      this.dato['ruolo'] = 'utente'
+      this.dato['ruolo'] = 'customer'
     else
       this.dato['ruolo'] = 'admin'
     this.index = this.dati.findIndex(riga => {

@@ -1,4 +1,4 @@
-import {ActionConfig, MyTableConfig} from "./interfaces/my-table-config";
+import { MyTableConfig} from "./interfaces/my-table-config";
 import {MyTableActionEnum} from "./my-table-action-enum";
 
 export const   DATA : any[] = [
@@ -53,7 +53,14 @@ export const TABLE : MyTableConfig = {
         icon: 'trash3',
         class: 'secondary'
       },
-      hidden: true
+      hidden: true,
+      isAdmin: (item: any): boolean => {
+        for(let column in item) {
+          if(item[column] == 'admin')
+            return true
+        }
+        return  false
+      },
     },
     { onTop: false,
       buttonAction: {
@@ -61,14 +68,7 @@ export const TABLE : MyTableConfig = {
         icon: 'arrow-downward',
         class: 'primary'
       },
-      hidden: false
+      hidden: false,
     },
   ],
-  lambdaFunction: (item: any, azione: ActionConfig): boolean => {
-    for(let column in item) {
-      if(item[column] == 'admin' && azione.hidden)
-        return true
-    }
-    return  false
-  },
 }
