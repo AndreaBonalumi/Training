@@ -11,7 +11,7 @@
   <app-my-button *ngIf="start < totalItems - table.pagination.itemPerPage" (click)="next()" [config]="button_next"></app-my-button>
   <div class="search">
     <label for="seleziona-pagina" style="margin-right: 10px"> item per pagina: </label>
-    <select id="seleziona-pagina" [(ngModel)]="table.pagination.itemPerPage" style="width: 20%;">
+    <select id="seleziona-pagina" [(ngModel)]="table.pagination.itemPerPage" style="width: 50%">
       <option *ngFor="let numero of table.pagination.itemPerPageOption">{{numero}}</option>
     </select>
   </div>

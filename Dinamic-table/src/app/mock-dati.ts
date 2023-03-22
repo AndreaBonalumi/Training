@@ -29,7 +29,7 @@ export const TABLE : MyTableConfig = {
     verso: 'asc',
   },
   search: {columns: ['key', 'label']},
-  pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4]},
+  pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4, 3]},
   actions: [
     { onTop: true,
       buttonAction: {

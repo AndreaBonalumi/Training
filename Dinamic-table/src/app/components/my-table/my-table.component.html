@@ -1,7 +1,7 @@
  <div id="search-data">
    <label for="seleziona-colonna">Seleziona una colonna per la ricerca: </label>
    <div class="search">
-    <select id="seleziona-colonna" [(ngModel)]="searchColumn" style="margin-right: 10px; width: 7%">
+    <select id="seleziona-colonna" [(ngModel)]="searchColumn" style="margin-right: 10px; width: 25%">
       <option *ngFor="let colonna of tableConfig.search.columns">{{colonna}}</option>
     </select>
     <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
