@@ -8,7 +8,7 @@
     </ng-container>
   </ng-container>
   <p *ngIf="paginaCorrente < (totalItems / table.pagination.itemPerPage) - 2" style="margin-right: 10px">...</p>
-  <app-my-button *ngIf="start < totalItems - (end - start)" (click)="next()" [config]="button_next"></app-my-button>
+  <app-my-button *ngIf="start < totalItems - table.pagination.itemPerPage" (click)="next()" [config]="button_next"></app-my-button>
   <div class="search">
     <label for="seleziona-pagina" style="margin-right: 10px"> item per pagina: </label>
     <select id="seleziona-pagina" [(ngModel)]="table.pagination.itemPerPage" style="width: 20%;">
