@@ -54,6 +54,5 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   }
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()
-    this.cdr.markForCheck()
   }
 }
