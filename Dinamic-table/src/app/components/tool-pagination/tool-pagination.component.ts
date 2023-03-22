@@ -56,9 +56,10 @@ export class ToolPaginationComponent implements OnInit, DoCheck{
     this.emit.emit(this.start)
   }
   ngDoCheck(): void {
-    if (this.end - this.start !== this.table.pagination.itemPerPage) {
+    if (this.end - this.start != parseInt(String(this.table.pagination.itemPerPage))) {
       this.table.pagination.itemPerPage = parseInt(String(this.table.pagination.itemPerPage))
       this.ngOnInit()
+      this.emit.emit(this.start)
     }
   }
 }
