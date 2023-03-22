@@ -11,6 +11,7 @@ import { OrdinamentoPipe } from './pipe/ordinamento.pipe';
 import { PaginationPipe } from './pipe/pagination.pipe';
 import { MyButtonComponent } from './components/my-button/my-button.component';
 import { MyActionComponent } from './components/my-action/my-action.component';
+import { ToolPaginationComponent } from './components/tool-pagination/tool-pagination.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { MyActionComponent } from './components/my-action/my-action.component';
     PaginationPipe,
     MyButtonComponent,
     MyActionComponent,
+    ToolPaginationComponent,
   ],
   imports: [
     BrowserModule,

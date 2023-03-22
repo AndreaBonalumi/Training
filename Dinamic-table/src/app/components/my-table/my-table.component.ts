@@ -1,7 +1,6 @@
 import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
-import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 
 @Component({
   selector: 'app-my-table',
@@ -18,16 +17,6 @@ export class MyTableComponent implements OnInit, DoCheck {
   end !: number;
   pagination: number[] = []
   pagineAttuali: number = 0;
-  button_next: ButtonInterface = {
-    text: 'Next',
-    icon: 'map',
-    class: 'primary'
-  }
-  button_back: ButtonInterface = {
-    text: 'Back',
-    icon: 'map',
-    class: 'primary'
-  }
   @Output() emit : EventEmitter<any> = new EventEmitter<any>()
   ordinamento(key: string): void {
     if (this.tableConfig.order.colonna === key) {
@@ -44,16 +33,7 @@ export class MyTableComponent implements OnInit, DoCheck {
       this.iconaOrdinamento = '↓';
     }
   }
-  next(): void {
-    console.log('next')
-    this.start += this.tableConfig.pagination.itemPerPage
-    this.end += this.tableConfig.pagination.itemPerPage
-  }
-  back(): void {
-    console.log('back')
-    this.start -= this.tableConfig.pagination.itemPerPage
-    this.end -= this.tableConfig.pagination.itemPerPage
-  }
+
   ngOnInit() {
     this.pagineAttuali = Math.ceil(this.data.length / this.tableConfig.pagination.itemPerPage)
     let count = 0
@@ -87,8 +67,8 @@ export class MyTableComponent implements OnInit, DoCheck {
     const e = { key: azione, dato: dato }
     this.emit.emit(e)
   }
-  changePagination(n: number): void {
-    this.start = this.tableConfig.pagination.itemPerPage * (n - 1)
+  changePagination(start: number): void {
+    this.start = start
     this.end = this.start + this.tableConfig.pagination.itemPerPage
   }
 }
