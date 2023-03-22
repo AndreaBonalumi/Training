@@ -6,10 +6,12 @@
     </select>
     <input type="text" [(ngModel)]="searchText" placeholder="cerca" />
    </div>
+
    <ng-container *ngFor="let azione of tableConfig.actions">
     <app-my-button *ngIf="azione.onTop" (click)="emitter(azione.buttonAction.text)" [config]="azione.buttonAction"></app-my-button>
    </ng-container>
  </div>
+
 <table>
   <thead>
   <tr>
@@ -19,6 +21,7 @@
     </th>
   </tr>
   </thead>
+
   <tbody>
     <tr *ngFor="let riga of data | filter: searchText!: searchColumn | pagination: start: end: tableConfig.pagination.itemPerPage | order: tableConfig.order.verso: tableConfig.order.colonna">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
@@ -28,4 +31,5 @@
     </tr>
   </tbody>
 </table>
+
  <app-tool-pagination [table]="tableConfig" [totalItems]="data.length" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>
