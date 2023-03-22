@@ -1,6 +1,7 @@
-import {AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { MyTableConfig} from "../../interfaces/my-table-config";
+import {AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
+import {MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
+
 @Component({
   selector: 'app-my-table',
   templateUrl: './my-table.component.html',
@@ -25,13 +26,13 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
         this.tableConfig.order.verso = 'asc'
         this.iconaOrdinamento = '↓'
       }
+
     } else {
       this.tableConfig.order.colonna = key;
       this.tableConfig.order.verso = 'asc';
       this.iconaOrdinamento = '↓';
     }
   }
-
   ngOnInit() {
     this.start = 0
     this.end = this.start + this.tableConfig.pagination.itemPerPage
@@ -53,5 +54,6 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   }
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()
+    this.cdr.markForCheck()
   }
 }

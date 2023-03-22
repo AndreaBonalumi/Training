@@ -1,4 +1,4 @@
-<app-my-table [tableConfig]="headers" [data]="dati | order: headers.order.verso: headers.order.colonna" (emit)="gestisciEvento($event)"></app-my-table>
+<app-my-table [tableConfig]="headers" [data]="dati" (emit)="gestisciEvento($event)"></app-my-table>
 
 <app-my-action *ngIf="apriMyAction"
                [table]="headers" [action]="action" [dato]="dato"
