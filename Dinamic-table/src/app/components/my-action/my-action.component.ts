@@ -7,7 +7,7 @@ import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/
   templateUrl: './my-action.component.html',
   styleUrls: ['./my-action.component.css']
 })
-export class MyActionComponent implements OnInit{
+export class MyActionComponent implements OnInit {
   @Input() table !: MyTableConfig;
   @Input() action !: string;
   @Input() dato ?: any;
@@ -15,7 +15,6 @@ export class MyActionComponent implements OnInit{
   @Output() emit : EventEmitter<any> = new EventEmitter<any>()
   editForm !: FormGroup;
   form !: boolean;
-  newData : any = {};
   index : number = -1;
   button_aggiungi : ButtonInterface = {
     text: 'Aggiungi',

@@ -17,7 +17,7 @@
       <label>{{i.label}}: </label>
       <input type="text" name="{{i.key}}" ngModel required /> <br>
     </ng-container>
-    <app-my-button [typeButton]="'submit'" [config]="button_aggiungi" [isDisabled]="!newForm.valid"></app-my-button>
+    <app-my-button [typeButton]="'submit'" [config]="button_aggiungi" [isDisabled]="!editForm.valid"></app-my-button>
     <app-my-button (emitter)="emit.emit()" [config]="button_back"></app-my-button>
   </form>
 </div>

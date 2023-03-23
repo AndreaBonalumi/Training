@@ -12,15 +12,14 @@ export class MyButtonComponent implements OnInit{
   @Input() isDisabled ?: boolean;
   @Output() emitter : EventEmitter<any> = new EventEmitter<any>()
   type !: string;
-  disabled !: boolean;
   ngOnInit() {
-    if(this.typeButton !== undefined)
+    if(this.typeButton !== undefined) {
       this.type = ''
-    else
+    } else {
       this.type = this.typeButton!
-    if(this.isDisabled !== undefined)
-      this.disabled = this.isDisabled;
-    else
-      this.disabled = false;
+    }
+    if(this.isDisabled !== undefined) {
+      this.isDisabled = false
+    }
   }
 }

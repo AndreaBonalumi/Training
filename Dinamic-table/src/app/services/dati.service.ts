@@ -9,7 +9,6 @@ export class DatiService {
   static getData(): any[] {
     return DATA;
   }
-
   static getTable(): MyTableConfig {
     return TABLE;
   }
