@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MyTableConfig} from "../../interfaces/my-table-config";
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
+import {NgForm} from "@angular/forms";
 @Component({
   selector: 'app-my-action',
   templateUrl: './my-action.component.html',
@@ -35,13 +36,6 @@ export class MyActionComponent implements OnInit{
     this.form = this.action === 'edit';
     if (this.form)
       this.attivaEdit()
-    else
-      this.attivaNew()
-  }
-  attivaNew(): void {
-    Object.keys(this.table.headers).forEach((colonna) => {
-      this.newData[colonna] = '';
-    });
   }
   attivaEdit(): void {
     this.index = this.data.findIndex(item => {
@@ -53,12 +47,13 @@ export class MyActionComponent implements OnInit{
       return false;
     });
   }
-  aggiungiDato(): void {
-    this.data.push(this.newData)
+  aggiungiDato(newForm: NgForm): void {
+    console.log(newForm)
+    this.data.push(newForm.value)
     window.alert("dati aggiunti")
     this.emit.emit()
   }
-  modificaDati(): void {
+  modificaDati(editForm: NgForm): void {
     this.data[this.index] = this.dato
     window.alert("dati modificati")
     this.emit.emit()

@@ -8,7 +8,7 @@
    </div>
 
    <ng-container *ngFor="let azione of tableConfig.actions">
-    <app-my-button *ngIf="azione.onTop" (click)="emitter(azione.buttonAction.text)" [config]="azione.buttonAction"></app-my-button>
+    <app-my-button *ngIf="azione.onTop" (emitter)="emitter(azione.buttonAction.text)" [config]="azione.buttonAction"></app-my-button>
    </ng-container>
  </div>
 
@@ -26,7 +26,7 @@
     <tr *ngFor="let riga of data | filter: searchText!: searchColumn | order: tableConfig.order.verso: tableConfig.order.colonna | pagination: start: end: tableConfig.pagination.itemPerPage: this.data[0]">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td *ngFor="let azione of tableConfig.actions">
-        <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop" (click)="emitter(azione.buttonAction.text, riga)" [config]="azione.buttonAction"></app-my-button>
+        <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop" (emitter)="emitter(azione.buttonAction.text, riga)" [config]="azione.buttonAction"></app-my-button>
       </td>
     </tr>
   </tbody>
