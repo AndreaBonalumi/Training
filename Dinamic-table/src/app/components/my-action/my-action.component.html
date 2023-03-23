@@ -10,11 +10,11 @@
 </div> -->
 
 <div *ngIf="form">
-  <form #editForm="ngForm" (ngSubmit)="modificaDati(editForm)">
-    <label>Iserisci i valori per aggiornare</label>
+  <form [formGroup]="editForm" (ngSubmit)="modificaDati()">
+    <label>Iserisci i valori per modificare il dato</label> <br>
     <ng-container *ngFor="let i of table.headers">
       <label>{{i.label}}: </label>
-      <input *ngIf="form" type="text" name="{{i.key}}" ngModel>
+      <input type="text" formControlName="{{i.key}}"/> <br>
     </ng-container>
     <app-my-button [typeButton]="'submit'" [config]="button_modifica" [isDisabled]="!editForm.valid"></app-my-button>
     <app-my-button (emitter)="emit.emit()" [config]="button_back"></app-my-button>

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { MyTableComponent } from './components/my-table/my-table.component';
 
 import {MatIconModule} from '@angular/material/icon';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FilterPipe } from './pipe/filter.pipe';
 import { OrdinamentoPipe } from './pipe/ordinamento.pipe';
 import { PaginationPipe } from './pipe/pagination.pipe';
@@ -23,11 +23,12 @@ import { ToolPaginationComponent } from './components/tool-pagination/tool-pagin
     MyActionComponent,
     ToolPaginationComponent,
   ],
-  imports: [
-    BrowserModule,
-    MatIconModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        MatIconModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

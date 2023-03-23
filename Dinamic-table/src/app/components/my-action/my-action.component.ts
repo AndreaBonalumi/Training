@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MyTableConfig} from "../../interfaces/my-table-config";
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
-import {NgForm} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 @Component({
   selector: 'app-my-action',
   templateUrl: './my-action.component.html',
@@ -13,7 +13,7 @@ export class MyActionComponent implements OnInit{
   @Input() dato ?: any;
   @Input() data !: any[];
   @Output() emit : EventEmitter<any> = new EventEmitter<any>()
-
+  editForm !: FormGroup;
   form !: boolean;
   newData : any = {};
   index : number = -1;
@@ -32,10 +32,16 @@ export class MyActionComponent implements OnInit{
     class: 'secondary',
     icon: 'skip-backward'
   }
+  constructor(private fb: FormBuilder) {}
   ngOnInit(): void {
     this.form = this.action === 'edit';
     if (this.form)
       this.attivaEdit()
+    const controls: Record<string, FormControl> = {};
+    this.table.headers.forEach((colonna) => {
+      controls[colonna.key] = new FormControl(this.dato[colonna.key], Validators.required)
+    });
+    this.editForm = this.fb.group(controls)
   }
   attivaEdit(): void {
     this.index = this.data.findIndex(item => {
@@ -53,8 +59,8 @@ export class MyActionComponent implements OnInit{
     window.alert("dati aggiunti")
     this.emit.emit()
   }
-  modificaDati(editForm: NgForm): void {
-    this.data[this.index] = this.dato
+  modificaDati(): void {
+    this.data[this.index] = this.editForm.value
     window.alert("dati modificati")
     this.emit.emit()
   }
