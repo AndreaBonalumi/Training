@@ -1,14 +1,3 @@
-<!-- <div style="margin-top: 10px">
-  <br> <label>{{ form ? 'Inserisci i valori per aggiornare' : 'Inserisci valori del nuovo dato' }}</label> <br>
-  <ng-container *ngFor="let i of table.headers">
-    <label>{{i.label}}: </label>
-    <input *ngIf="form" type="text" [(ngModel)]="dato[i.key]">
-    <input *ngIf="!form" type="text" [(ngModel)]="newData[i.key]"> <br>
-  </ng-container>
-  <app-my-button (click)="form ? modificaDati() : aggiungiDato()" [config]="form ? button_modifica : button_aggiungi"></app-my-button>
-  <app-my-button (click)="emit.emit()" [config]="button_back"></app-my-button>
-</div> -->
-
 <div *ngIf="form">
   <form [formGroup]="editForm" (ngSubmit)="modificaDati()">
     <label>Iserisci i valori per modificare il dato</label> <br>
