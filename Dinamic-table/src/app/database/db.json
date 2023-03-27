@@ -1,0 +1,34 @@
+{
+  "data":  [
+    {
+      "id": 1, "label": "nome1", "role": "admin"},
+    {
+      "id": 2, "label": "nome2", "role": "admin"},
+    {
+      "id": 3, "label": "nome3", "role": "admin"},
+    {
+      "id": 4, "label": "nome4", "role": "customer"},
+    {
+      "id": 5, "label": "nome5", "role": "customer"},
+    {
+      "id": 6, "label": "nome6", "role": "customer"},
+    {
+      "id": 7, "label": "nome7", "role": "customer"},
+    {
+      "id": 8, "label": "nome8", "role": "customer"},
+    {
+      "id": 9, "label": "nome9", "role": "customer"},
+    {
+      "id": 10, "label": "nome10", "role": "customer"},
+    {
+      "id": 11, "label": "nome11", "role": "customer"},
+    {
+      "id": 12, "label": "nome12", "role": "customer"},
+    {
+      "id": 13, "label": "nome13", "role": "customer"},
+    {
+      "id": 14, "label": "nome14", "role": "customer"},
+    {
+      "id": 15, "label": "nome15", "role": "customer"}
+  ]
+}
