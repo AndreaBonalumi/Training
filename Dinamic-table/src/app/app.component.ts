@@ -8,7 +8,6 @@ import {DatiService} from "./services/dati.service";
 })
 export class AppComponent implements OnInit{
   dati : any[] = []
-  headers = DatiService.getTable()
   dato ?: any;
   apriMyAction : boolean = false;
   action : string = 'noAction';
@@ -37,9 +36,9 @@ export class AppComponent implements OnInit{
     }
   }
   attivaCancella(dato: any): void {
-    this.datiservice.deleteData(dato).subscribe(dato => this.dati = dato)
+    this.datiservice.deleteData(dato)
   }
   cambiaRuolo(): void {
-    this.datiservice.changeRole(this.dato).subscribe(dato => this.dati = dato)
+    this.datiservice.changeRole(this.dato)
   }
 }

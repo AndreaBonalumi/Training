@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { MyTableComponent } from './components/my-table/my-table.component';
@@ -12,6 +13,8 @@ import { PaginationPipe } from './pipe/pagination.pipe';
 import { MyButtonComponent } from './components/my-button/my-button.component';
 import { MyActionComponent } from './components/my-action/my-action.component';
 import { ToolPaginationComponent } from './components/tool-pagination/tool-pagination.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +31,7 @@ import { ToolPaginationComponent } from './components/tool-pagination/tool-pagin
         MatIconModule,
         FormsModule,
         ReactiveFormsModule,
+      HttpClientModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,31 +2,31 @@ import { Injectable } from '@angular/core';
 import {DATA, TABLE} from "../mock-dati";
 import { MyTableConfig} from "../interfaces/my-table-config";
 import {Observable, of} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatiService {
+  constructor(private http: HttpClient) {}
   getData(): Observable<any> {
     return of(DATA)
   }
   static getTable(): MyTableConfig {
     return TABLE;
   }
-  newData(d: any): Observable<any> {
+  newData(d: any) {
     DATA.push(d)
     window.alert("dati aggiunti")
-    return of(DATA)
   }
-  editData(d: any, newd: any): Observable<any> {
+  editData(d: any, newd: any) {
     let index = DATA.findIndex(item => {
         return item === d;
     });
     DATA[index] = newd
     window.alert("dati modificati")
-    return of(DATA)
   }
-  deleteData(d: any): Observable<any> {
+  deleteData(d: any) {
     let index = DATA.findIndex(item => {
       return item === d;
     });
@@ -36,9 +36,8 @@ export class DatiService {
     }
     else
       window.alert("elemento non esistente")
-    return of(DATA)
   }
-  changeRole(d: any): Observable<any> {
+  changeRole(d: any) {
     if (d['role'] == 'admin')
       d['role'] = 'customer'
     else
@@ -47,6 +46,5 @@ export class DatiService {
       return item === d;
     });
     DATA[index] = d
-    return of(DATA)
   }
 }
