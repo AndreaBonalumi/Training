@@ -20,8 +20,8 @@ export const   DATA : any[] = [
 ];
 export const TABLE : MyTableConfig = {
   headers: [
-    {key: 'key', label: 'Nome'},
-    {key: 'label', label: 'Cognome'},
+    {key: 'id', label: 'ID'},
+    {key: 'label', label: 'Nome'},
     {key: 'role', label: 'Ruolo'}
   ],
   order: {

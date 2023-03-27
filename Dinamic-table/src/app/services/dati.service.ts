@@ -1,50 +1,37 @@
 import { Injectable } from '@angular/core';
-import {DATA, TABLE} from "../mock-dati";
+import {TABLE} from "../mock-dati";
 import { MyTableConfig} from "../interfaces/my-table-config";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatiService {
+  private apiUrl = 'http://localhost:3000/data'
   constructor(private http: HttpClient) {}
   getData(): Observable<any> {
-    return of(DATA)
+    return this.http.get<any>(this.apiUrl);
   }
   static getTable(): MyTableConfig {
     return TABLE;
   }
-  newData(d: any) {
-    DATA.push(d)
-    window.alert("dati aggiunti")
+  newData(d: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, d);
   }
-  editData(d: any, newd: any) {
-    let index = DATA.findIndex(item => {
-        return item === d;
-    });
-    DATA[index] = newd
-    window.alert("dati modificati")
+  editData(d: any): Observable<any> {
+    const url = `${this.apiUrl}/${d.id}`;
+    return this.http.put<any>(url, d);
   }
-  deleteData(d: any) {
-    let index = DATA.findIndex(item => {
-      return item === d;
-    });
-    if (index >= 0) {
-      DATA.splice(index, 1)
-      window.alert("elemento cancellato");
-    }
-    else
-      window.alert("elemento non esistente")
+  deleteData(d: any): Observable<any> {
+    const url = `${this.apiUrl}/${d.id}`;
+    return this.http.delete<any>(url);
   }
   changeRole(d: any) {
     if (d['role'] == 'admin')
       d['role'] = 'customer'
     else
       d['role'] = 'admin'
-    let index = DATA.findIndex(item => {
-      return item === d;
-    });
-    DATA[index] = d
+    this.editData(d)
   }
 }

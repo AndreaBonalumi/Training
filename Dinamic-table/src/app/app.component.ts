@@ -36,7 +36,7 @@ export class AppComponent implements OnInit{
     }
   }
   attivaCancella(dato: any): void {
-    this.datiservice.deleteData(dato)
+    this.datiservice.deleteData(dato).subscribe()
   }
   cambiaRuolo(): void {
     this.datiservice.changeRole(this.dato)

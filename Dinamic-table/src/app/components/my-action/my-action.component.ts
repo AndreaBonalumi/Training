@@ -35,21 +35,22 @@ export class MyActionComponent implements OnInit {
     this.getTable()
     this.form = this.action === 'edit';
     const controls: Record<string, FormControl> = {};
-    this.table.headers.forEach((colonna) => {
-      controls[colonna.key] = new FormControl(this.dato[colonna.key], Validators.required)
-    });
-    this.editForm = this.fb.group(controls)
+    if(this.form){
+      this.table.headers.forEach((colonna) => {
+        controls[colonna.key] = new FormControl(this.dato[colonna.key], Validators.required)
+      });
+      this.editForm = this.fb.group(controls)
+    }
   }
   getTable(): void {
-    this.datiService.getData()
     this.table = DatiService.getTable()
   }
   aggiungiDato(newForm: NgForm): void {
-    this.datiService.newData(newForm.value)
+    this.datiService.newData(newForm.value).subscribe()
     this.emit.emit()
   }
   modificaDati(): void {
-    this.datiService.editData(this.dato, this.editForm.value)
+    this.datiService.editData(this.editForm.value).subscribe()
     this.emit.emit()
   }
 }
