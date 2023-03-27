@@ -27,6 +27,7 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   constructor(private cdr: ChangeDetectorRef, private datiService: DatiService) {}
   ngOnInit() {
     this.getTable()
+    this.tableConfig = DatiService.getTable()
     this.start = 0
     this.end = this.start + this.tableConfig.pagination.itemPerPage
     if (this.tableConfig.order.verso == 'asc') {
@@ -37,7 +38,6 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   }
   getTable(): void {
     this.datiService.getData().subscribe(dato => this.data = dato)
-    this.tableConfig = DatiService.getTable()
   }
   ordinamento(key: string): void {
     if (this.tableConfig.order.colonna === key) {

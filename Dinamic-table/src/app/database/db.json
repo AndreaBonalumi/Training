@@ -11,11 +11,6 @@
       "role": "admin"
     },
     {
-      "id": "4",
-      "label": "nome4",
-      "role": "customer"
-    },
-    {
       "id": "5",
       "label": "nome5",
       "role": "customer"
@@ -78,6 +73,11 @@
     {
       "id": "6",
       "label": "nome6",
+      "role": "customer"
+    },
+    {
+      "id": "4",
+      "label": "teybg",
       "role": "customer"
     }
   ]
