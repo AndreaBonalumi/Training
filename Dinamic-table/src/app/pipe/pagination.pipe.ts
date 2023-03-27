@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PaginationPipe implements PipeTransform {
 
-  transform(items: any[], start: number, end: number, pagination: number, dato : any): any[] {
+  transform(items: any[], start: number, end: number, pagination: number, dato : any[]): any[] {
     if(dato != undefined) {
       if (start < 0)
         return items.slice(0, pagination)

@@ -1,5 +1,5 @@
-<app-my-table [tableConfig]="headers" [data]="dati" (emit)="gestisciEvento($event)"></app-my-table>
+<app-my-table (emit)="gestisciEvento($event)"></app-my-table>
 
 <app-my-action *ngIf="apriMyAction"
-               [table]="headers" [action]="action" [dato]="dato"
-                [data]="dati" (emit)="apriMyAction = false"></app-my-action>
+                [action]="action" [dato]="dato"
+                 (emit)="apriMyAction = false"></app-my-action>

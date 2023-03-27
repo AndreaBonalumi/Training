@@ -1,6 +1,14 @@
-import {AfterContentChecked, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
+import {
+  AfterContentChecked,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {MyTableConfig} from "../../interfaces/my-table-config";
 import {MyHeaders} from "../../interfaces/my-headers";
+import {DatiService} from "../../services/dati.service";
 
 @Component({
   selector: 'app-my-table',
@@ -8,15 +16,29 @@ import {MyHeaders} from "../../interfaces/my-headers";
   styleUrls: ['./my-table.component.css']
 })
 export class MyTableComponent implements OnInit, AfterContentChecked {
-  @Input() tableConfig !: MyTableConfig;
-  @Input() data !: any[];
   @Output() emit: EventEmitter<any> = new EventEmitter<any>()
+  tableConfig !: MyTableConfig;
+  data : any[] = [];
   iconaOrdinamento !: string;
   searchText: string = '';
   searchColumn: string = '';
   start !: number;
   end !: number;
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private datiService: DatiService) {}
+  ngOnInit() {
+    this.getTable()
+    this.start = 0
+    this.end = this.start + this.tableConfig.pagination.itemPerPage
+    if (this.tableConfig.order.verso == 'asc') {
+      this.iconaOrdinamento = '↓'
+    } else {
+      this.iconaOrdinamento = '↑'
+    }
+  }
+  getTable(): void {
+    this.datiService.getData().subscribe(dato => this.data = dato)
+    this.tableConfig = DatiService.getTable()
+  }
   ordinamento(key: string): void {
     if (this.tableConfig.order.colonna === key) {
       if (this.tableConfig.order.verso === 'asc') {
@@ -33,21 +55,6 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
       this.iconaOrdinamento = '↓';
     }
   }
-  ngOnInit() {
-    this.start = 0
-    this.end = this.start + this.tableConfig.pagination.itemPerPage
-    if (this.tableConfig.order.verso == 'asc') {
-      this.iconaOrdinamento = '↓'
-    } else {
-      this.iconaOrdinamento = '↑'
-    }
-  }
-
-  emitter(azione: string, dato ?: MyHeaders): void {
-    const e = {key: azione, dato: dato}
-    this.emit.emit(e)
-  }
-
   changePagination(start: number): void {
     this.start = start
     this.end = this.start + this.tableConfig.pagination.itemPerPage
@@ -55,4 +62,9 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()
   }
+  emitter(azione: string, dato ?: MyHeaders): void {
+    const e = {key: azione, dato: dato}
+    this.emit.emit(e)
+  }
+
 }

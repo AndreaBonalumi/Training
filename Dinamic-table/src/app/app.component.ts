@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DatiService} from "./services/dati.service";
 
 @Component({
@@ -6,13 +6,19 @@ import {DatiService} from "./services/dati.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
-  dati = DatiService.getData()
+export class AppComponent implements OnInit{
+  dati : any[] = []
   headers = DatiService.getTable()
   dato ?: any;
-  index : number = -1;
   apriMyAction : boolean = false;
   action : string = 'noAction';
+  constructor(private datiservice: DatiService) {}
+  ngOnInit() {
+    this.getDati()
+  }
+  getDati(): void {
+    this.datiservice.getData().subscribe(dato => this.dati = dato)
+  }
   gestisciEvento(e: any): void {
     if(e.key === 'delete')
       this.attivaCancella(e.dato)
@@ -31,31 +37,9 @@ export class AppComponent{
     }
   }
   attivaCancella(dato: any): void {
-    this.index = this.dati.findIndex(item => {
-      return item === dato;
-    });
-    if (this.index >= 0) {
-      let appoggio = this.dati;
-      appoggio.splice(this.index, 1)
-      this.dati = appoggio
-      window.alert("elemento cancellato");
-    }
-    else
-      window.alert("elemento non esistente")
+    this.datiservice.deleteData(dato).subscribe(dato => this.dati = dato)
   }
   cambiaRuolo(): void {
-    if (this.dato['role'] == 'admin')
-      this.dato['role'] = 'customer'
-    else
-      this.dato['role'] = 'admin'
-    this.index = this.dati.findIndex(riga => {
-      for (const column in riga) {
-        if (riga[column] === this.dato[column]) {
-          return true;
-        }
-      }
-      return false;
-    })
-    this.dati[this.index] = this.dato
+    this.datiservice.changeRole(this.dato).subscribe(dato => this.dati = dato)
   }
 }
