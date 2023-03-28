@@ -35,7 +35,7 @@ export class ToolPaginationComponent implements OnInit, DoCheck{
     this.start += this.table.pagination.itemPerPage
     this.end += this.table.pagination.itemPerPage
     this.paginaCorrente ++
-    this.emit.emit(this.start)
+    this.emit.emit(this.paginaCorrente)
   }
   back(): void {
     if(this.start >= this.table.pagination.itemPerPage)
@@ -44,7 +44,7 @@ export class ToolPaginationComponent implements OnInit, DoCheck{
       this.start = 0
     this.end -= this.table.pagination.itemPerPage
     this.paginaCorrente--
-    this.emit.emit(this.start)
+    this.emit.emit(this.paginaCorrente)
   }
   range(numero: number): number[] {
     let arrayNum : number[] = []
@@ -56,13 +56,13 @@ export class ToolPaginationComponent implements OnInit, DoCheck{
     this.start = this.table.pagination.itemPerPage * (n - 1)
     this.end = this.start + this.table.pagination.itemPerPage
     this.paginaCorrente = n
-    this.emit.emit(this.start)
+    this.emit.emit(this.paginaCorrente)
   }
   ngDoCheck(): void {
     if (this.end - this.start != parseInt(String(this.table.pagination.itemPerPage))) {
       this.table.pagination.itemPerPage = parseInt(String(this.table.pagination.itemPerPage))
       this.ngOnInit()
-      this.emit.emit(this.start)
+      this.emit.emit(this.paginaCorrente)
     }
     if((this.totalItems / this.table.pagination.itemPerPage) != this.pagination)
       this.ngOnInit()

@@ -1,7 +1,7 @@
 import {
   AfterContentChecked,
   ChangeDetectorRef,
-  Component,
+  Component, DoCheck,
   EventEmitter, Input,
   OnInit,
   Output,
@@ -15,25 +15,28 @@ import {DatiService} from "../../services/dati.service";
   templateUrl: './my-table.component.html',
   styleUrls: ['./my-table.component.css']
 })
-export class MyTableComponent implements OnInit, AfterContentChecked {
+export class MyTableComponent implements OnInit, AfterContentChecked, DoCheck {
   @Output() emit: EventEmitter<any> = new EventEmitter<any>()
   tableConfig !: MyTableConfig;
   @Input() data !: any[];
   iconaOrdinamento !: string;
   searchText: string = '';
   searchColumn: string = '';
-  start !: number;
+  start : number = 0;
   end !: number;
-  constructor(private cdr: ChangeDetectorRef) {}
+  totalItems : number = 0;
+  currentPage !: number;
+  constructor(private cdr: ChangeDetectorRef, private datiService: DatiService) {}
   ngOnInit() {
+    this.currentPage = 1
     this.tableConfig = DatiService.getTable()
-    this.start = 0
     this.end = this.start + this.tableConfig.pagination.itemPerPage
     if (this.tableConfig.order.verso == 'asc') {
       this.iconaOrdinamento = '↓'
     } else {
       this.iconaOrdinamento = '↑'
     }
+    this.datiService.orderAndPagination(this.tableConfig.order.colonna, this.tableConfig.order.verso, this.currentPage, this.tableConfig.pagination.itemPerPage).subscribe(data => this.data = data)
   }
   ordinamento(key: string): void {
     if (this.tableConfig.order.colonna === key) {
@@ -50,10 +53,12 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
       this.tableConfig.order.verso = 'asc';
       this.iconaOrdinamento = '↓';
     }
+    this.datiService.orderAndPagination(this.tableConfig.order.colonna, this.tableConfig.order.verso, this.currentPage, this.tableConfig.pagination.itemPerPage).subscribe(data => this.data = data)
   }
-  changePagination(start: number): void {
-    this.start = start
+  changePagination(currentPage: number): void {
+    this.currentPage = currentPage
     this.end = this.start + this.tableConfig.pagination.itemPerPage
+    this.datiService.orderAndPagination(this.tableConfig.order.colonna, this.tableConfig.order.verso, this.currentPage, this.tableConfig.pagination.itemPerPage).subscribe(data => this.data = data)
   }
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()
@@ -61,5 +66,13 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
   emitter(azione: string, dato ?: MyHeaders): void {
     const e = {key: azione, dato: dato}
     this.emit.emit(e)
+  }
+  filtra() {
+    this.datiService.filter(this.searchColumn, this.searchText).subscribe(data => this.data = data)
+  }
+  ngDoCheck() {
+    if(this.totalItems <= this.data.length) {
+      this.totalItems = this.data.length
+    }
   }
 }
