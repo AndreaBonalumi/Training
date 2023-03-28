@@ -26,6 +26,9 @@ export class ToolPaginationComponent implements OnInit, DoCheck{
     class: 'primary'
   }
   ngOnInit(): void {
+    this.setUp()
+  }
+  setUp() {
     this.end = this.start + this.table.pagination.itemPerPage;
     this.pagination = Math.ceil((this.totalItems - this.start) / this.table.pagination.itemPerPage) + Math.ceil(this.start / this.table.pagination.itemPerPage);
     this.paginaCorrente = Math.ceil(this.start / this.table.pagination.itemPerPage) + 1;
@@ -60,11 +63,14 @@ export class ToolPaginationComponent implements OnInit, DoCheck{
   }
   ngDoCheck(): void {
     if (this.end - this.start != parseInt(String(this.table.pagination.itemPerPage))) {
+      console.log('trigger1')
       this.table.pagination.itemPerPage = parseInt(String(this.table.pagination.itemPerPage))
-      this.ngOnInit()
+      this.setUp()
       this.emit.emit(this.paginaCorrente)
     }
-    if((this.totalItems / this.table.pagination.itemPerPage) != this.pagination)
-      this.ngOnInit()
+    if(Math.ceil(this.totalItems / this.table.pagination.itemPerPage) != this.pagination) {
+      console.log('tigger2')
+      this.setUp()
+    }
   }
 }
