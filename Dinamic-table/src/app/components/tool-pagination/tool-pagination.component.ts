@@ -63,13 +63,11 @@ export class ToolPaginationComponent implements OnInit, DoCheck{
   }
   ngDoCheck(): void {
     if (this.end - this.start != parseInt(String(this.table.pagination.itemPerPage))) {
-      console.log('trigger1')
       this.table.pagination.itemPerPage = parseInt(String(this.table.pagination.itemPerPage))
       this.setUp()
       this.emit.emit(this.paginaCorrente)
     }
     if(Math.ceil(this.totalItems / this.table.pagination.itemPerPage) != this.pagination) {
-      console.log('tigger2')
       this.setUp()
     }
   }
