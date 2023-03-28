@@ -32,6 +32,6 @@ export class DatiService {
       d['role'] = 'customer'
     else
       d['role'] = 'admin'
-    this.editData(d)
+    this.editData(d).subscribe()
   }
 }
