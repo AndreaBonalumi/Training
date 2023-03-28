@@ -2,7 +2,7 @@ import {
   AfterContentChecked,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
+  EventEmitter, Input,
   OnInit,
   Output,
 } from '@angular/core';
@@ -18,15 +18,14 @@ import {DatiService} from "../../services/dati.service";
 export class MyTableComponent implements OnInit, AfterContentChecked {
   @Output() emit: EventEmitter<any> = new EventEmitter<any>()
   tableConfig !: MyTableConfig;
-  data : any[] = [];
+  @Input() data !: any[];
   iconaOrdinamento !: string;
   searchText: string = '';
   searchColumn: string = '';
   start !: number;
   end !: number;
-  constructor(private cdr: ChangeDetectorRef, private datiService: DatiService) {}
+  constructor(private cdr: ChangeDetectorRef) {}
   ngOnInit() {
-    this.getTable()
     this.tableConfig = DatiService.getTable()
     this.start = 0
     this.end = this.start + this.tableConfig.pagination.itemPerPage
@@ -35,9 +34,6 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
     } else {
       this.iconaOrdinamento = '↑'
     }
-  }
-  getTable(): void {
-    this.datiService.getData().subscribe(dato => this.data = dato)
   }
   ordinamento(key: string): void {
     if (this.tableConfig.order.colonna === key) {
@@ -66,5 +62,4 @@ export class MyTableComponent implements OnInit, AfterContentChecked {
     const e = {key: azione, dato: dato}
     this.emit.emit(e)
   }
-
 }

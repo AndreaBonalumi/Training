@@ -6,48 +6,8 @@
       "role": "admin"
     },
     {
-      "id": "3",
-      "label": "nome3",
-      "role": "admin"
-    },
-    {
-      "id": "5",
-      "label": "nome5",
-      "role": "customer"
-    },
-    {
-      "id": "7",
-      "label": "nome7",
-      "role": "customer"
-    },
-    {
-      "id": "8",
-      "label": "nome8",
-      "role": "customer"
-    },
-    {
-      "id": "9",
-      "label": "nome9",
-      "role": "customer"
-    },
-    {
       "id": "10",
       "label": "nome10",
-      "role": "customer"
-    },
-    {
-      "id": "11",
-      "label": "nome11",
-      "role": "customer"
-    },
-    {
-      "id": "12",
-      "label": "nome12",
-      "role": "customer"
-    },
-    {
-      "id": "13",
-      "label": "nome13",
       "role": "customer"
     },
     {
@@ -76,8 +36,33 @@
       "role": "customer"
     },
     {
-      "id": "4",
-      "label": "teybg",
+      "id": "78",
+      "label": "Andrea",
+      "role": "admin"
+    },
+    {
+      "id": "0",
+      "label": "manuel",
+      "role": "admin"
+    },
+    {
+      "id": "-1",
+      "label": "fabio",
+      "role": "customer"
+    },
+    {
+      "id": "11",
+      "label": "nome11",
+      "role": "customer"
+    },
+    {
+      "id": "69",
+      "label": "sadf",
+      "role": "sfdg"
+    },
+    {
+      "id": "13",
+      "label": "nome13",
       "role": "customer"
     }
   ]

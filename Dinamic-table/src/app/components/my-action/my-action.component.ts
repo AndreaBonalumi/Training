@@ -1,4 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {MyTableConfig} from "../../interfaces/my-table-config";
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
@@ -48,9 +54,11 @@ export class MyActionComponent implements OnInit {
   aggiungiDato(newForm: NgForm): void {
     this.datiService.newData(newForm.value).subscribe()
     this.emit.emit()
+    window.alert("elemento aggiunto")
   }
   modificaDati(): void {
     this.datiService.editData(this.editForm.value).subscribe()
     this.emit.emit()
+    window.alert("elemento modificato")
   }
 }

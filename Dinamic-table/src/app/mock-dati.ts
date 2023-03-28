@@ -7,10 +7,10 @@ export const TABLE : MyTableConfig = {
     {key: 'role', label: 'Ruolo'}
   ],
   order: {
-    colonna: 'key',
+    colonna: 'id',
     verso: 'asc',
   },
-  search: {columns: ['key', 'label']},
+  search: {columns: ['label', 'role']},
   pagination: {itemPerPage: 3, itemPerPageOption: [2, 5, 7, 4, 3]},
   actions: [
     { onTop: true,

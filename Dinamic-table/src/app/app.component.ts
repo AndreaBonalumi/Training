@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {DatiService} from "./services/dati.service";
 
 @Component({
@@ -36,9 +36,17 @@ export class AppComponent implements OnInit{
     }
   }
   attivaCancella(dato: any): void {
-    this.datiservice.deleteData(dato).subscribe()
+    if(this.datiservice.deleteData(dato).subscribe()) {
+      window.alert("elemento cancellato")
+      this.datiservice.getData().subscribe(data => this.dati = data)
+    } else
+      window.alert("elemento non trovato")
   }
   cambiaRuolo(): void {
     this.datiservice.changeRole(this.dato)
+  }
+  evento() {
+    this.apriMyAction = false;
+    this.datiservice.getData().subscribe(data => this.dati = data)
   }
 }
