@@ -71,7 +71,7 @@ export class MyTableComponent implements OnInit, AfterContentChecked, DoCheck {
     this.datiService.filter(this.searchColumn, this.searchText).subscribe(data => this.data = data)
   }
   ngDoCheck() {
-    if(this.totalItems <= this.data.length) {
+    if(this.totalItems < this.data.length) {
       this.totalItems = this.data.length
     }
   }
