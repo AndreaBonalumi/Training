@@ -13,6 +13,8 @@ import { PaginationPipe } from './pipe/pagination.pipe';
 import { MyButtonComponent } from './components/my-button/my-button.component';
 import { MyActionComponent } from './components/my-action/my-action.component';
 import { ToolPaginationComponent } from './components/tool-pagination/tool-pagination.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import { ToolPaginationComponent } from './components/tool-pagination/tool-pagin
     MyButtonComponent,
     MyActionComponent,
     ToolPaginationComponent,
+    HomeComponent,
   ],
     imports: [
         BrowserModule,
@@ -32,6 +35,7 @@ import { ToolPaginationComponent } from './components/tool-pagination/tool-pagin
         FormsModule,
         ReactiveFormsModule,
       HttpClientModule,
+      AppRoutingModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
