@@ -18,7 +18,7 @@ export class MyActionComponent implements OnInit {
   @Input() action !: string;
   @Input() dato ?: any;
   @Output() emit : EventEmitter<any> = new EventEmitter<any>();
-  table !: MyTableConfig;
+  table : MyTableConfig = DatiService.getTable();
   editForm !: FormGroup;
   form !: boolean;
   button_aggiungi : ButtonInterface = {
@@ -38,7 +38,6 @@ export class MyActionComponent implements OnInit {
   }
   constructor(private fb: FormBuilder, private datiService: DatiService) {}
   ngOnInit(): void {
-    this.getTable()
     this.form = this.action === 'edit';
     const controls: Record<string, FormControl> = {};
     if(this.form){
@@ -47,9 +46,6 @@ export class MyActionComponent implements OnInit {
       });
       this.editForm = this.fb.group(controls)
     }
-  }
-  getTable(): void {
-    this.table = DatiService.getTable()
   }
   aggiungiDato(newForm: NgForm): void {
     this.datiService.newData(newForm.value).subscribe()

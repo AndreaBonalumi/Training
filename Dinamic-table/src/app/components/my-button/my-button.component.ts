@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 
 @Component({
@@ -6,20 +6,9 @@ import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterf
   templateUrl: './my-button.component.html',
   styleUrls: ['./my-button.component.css']
 })
-export class MyButtonComponent implements OnInit{
+export class MyButtonComponent{
   @Input() config !: ButtonInterface;
-  @Input() typeButton ?: string;
-  @Input() isDisabled ?: boolean;
+  @Input() typeButton : string = '';
+  @Input() isDisabled : boolean = false;
   @Output() emitter : EventEmitter<any> = new EventEmitter<any>()
-  type !: string;
-  ngOnInit() {
-    if(this.typeButton !== undefined) {
-      this.type = ''
-    } else {
-      this.type = this.typeButton!
-    }
-    if(this.isDisabled !== undefined) {
-      this.isDisabled = false
-    }
-  }
 }
