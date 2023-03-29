@@ -12,7 +12,7 @@
 
   <p *ngIf="paginaCorrente < (totalItems / table.pagination.itemPerPage) - 2" style="margin-right: 10px">...</p>
 
-  <app-my-button [isDisabled]="start > (totalItems - table.pagination.itemPerPage)" (emitter)="next()" [config]="button_next"></app-my-button>
+  <app-my-button [isDisabled]="start >= (totalItems - table.pagination.itemPerPage)" (emitter)="next()" [config]="button_next"></app-my-button>
 
   <div class="search">
     <label for="seleziona-pagina" style="margin-right: 10px"> item per pagina: </label>

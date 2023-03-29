@@ -1,8 +1,8 @@
 import {
   AfterContentChecked,
   ChangeDetectorRef,
-  Component, DoCheck,
-  EventEmitter, Input,
+  Component,
+  EventEmitter, Input, IterableDiffer, IterableDiffers,
   OnInit,
   Output,
 } from '@angular/core';
@@ -15,7 +15,7 @@ import {DatiService} from "../../services/dati.service";
   templateUrl: './my-table.component.html',
   styleUrls: ['./my-table.component.css']
 })
-export class MyTableComponent implements OnInit, AfterContentChecked, DoCheck {
+export class MyTableComponent implements OnInit, AfterContentChecked {
   @Output() emit: EventEmitter<any> = new EventEmitter<any>()
   @Input() data !: any[];
   tableConfig : MyTableConfig = DatiService.getTable();
@@ -26,9 +26,16 @@ export class MyTableComponent implements OnInit, AfterContentChecked, DoCheck {
   end !: number;
   totalItems : number = 0;
   currentPage !: number;
-  constructor(private cdr: ChangeDetectorRef, private datiService: DatiService) {}
+  parzialData !: any[];
+  iterableDiffer !: IterableDiffer<any>;
+  constructor(private cdr: ChangeDetectorRef,
+              private datiService: DatiService,
+              private iterableDiffers: IterableDiffers) {
+    this.iterableDiffer = this.iterableDiffers.find([]).create()
+  }
   ngOnInit() {
     this.currentPage = 1
+    this.totalItems = this.data.length
     this.end = this.start + this.tableConfig.pagination.itemPerPage
     if (this.tableConfig.order.verso == 'asc') {
       this.iconaOrdinamento = '↓'
@@ -39,7 +46,7 @@ export class MyTableComponent implements OnInit, AfterContentChecked, DoCheck {
       this.tableConfig.order.verso,
       this.currentPage,
       this.tableConfig.pagination.itemPerPage
-    ).subscribe(data => this.data = data)
+    ).subscribe(data => this.parzialData = data)
   }
   ordinamento(key: string): void {
     if (this.tableConfig.order.colonna === key) {
@@ -61,7 +68,7 @@ export class MyTableComponent implements OnInit, AfterContentChecked, DoCheck {
       this.tableConfig.order.verso,
       this.currentPage,
       this.tableConfig.pagination.itemPerPage
-    ).subscribe(data => this.data = data)
+    ).subscribe(data => this.parzialData = data)
   }
   changePagination(currentPage: number): void {
     this.currentPage = currentPage
@@ -70,10 +77,20 @@ export class MyTableComponent implements OnInit, AfterContentChecked, DoCheck {
       this.tableConfig.order.verso,
       this.currentPage,
       this.tableConfig.pagination.itemPerPage
-    ).subscribe(data => this.data = data)
+    ).subscribe(data => this.parzialData = data)
   }
   ngAfterContentChecked(): void {
     this.cdr.detectChanges()
+    const changes = this.iterableDiffer.diff(this.data);
+    if (changes) {
+      changes.forEachAddedItem(() => this.totalItems++)
+      changes.forEachRemovedItem(() => this.totalItems--)
+      this.datiService.orderAndPagination(this.tableConfig.order.colonna,
+        this.tableConfig.order.verso,
+        this.currentPage,
+        this.tableConfig.pagination.itemPerPage
+      ).subscribe(data => this.parzialData = data)
+    }
   }
   emitter(azione: string, dato ?: MyHeaders): void {
     const e = {key: azione, dato: dato}
@@ -81,10 +98,5 @@ export class MyTableComponent implements OnInit, AfterContentChecked, DoCheck {
   }
   filtra() {
     this.datiService.filter(this.searchColumn, this.searchText).subscribe(data => this.data = data)
-  }
-  ngDoCheck() {
-    if(this.totalItems < this.data.length) {
-      this.totalItems = this.data.length
-    }
   }
 }

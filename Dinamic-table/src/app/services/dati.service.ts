@@ -20,8 +20,8 @@ export class DatiService {
   newData(d: any): Observable<any> {
     return this.http.post(this.apiUrl, d);
   }
-  editData(d: any): Observable<any> {
-    const url = `${this.apiUrl}/${d.id}`;
+  editData(id: number, d: any): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
     return this.http.put(url, d);
   }
   deleteData(d: any): Observable<any> {
@@ -33,7 +33,7 @@ export class DatiService {
       d['role'] = 'customer'
     else
       d['role'] = 'admin'
-    this.editData(d).subscribe()
+    this.editData(d.id, d).subscribe()
   }
   filter(colonna: string, searchText: string): Observable<any> {
     let params = new HttpParams();

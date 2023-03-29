@@ -6,11 +6,6 @@
       "role": "admin"
     },
     {
-      "id": "10",
-      "label": "nome10",
-      "role": "customer"
-    },
-    {
       "id": "14",
       "label": "nome14",
       "role": "customer"
@@ -42,12 +37,12 @@
     },
     {
       "id": "0",
-      "label": "manuel",
+      "label": "Manuel",
       "role": "admin"
     },
     {
       "id": "-1",
-      "label": "fabio",
+      "label": "Fabio",
       "role": "admin"
     },
     {
@@ -56,13 +51,18 @@
       "role": "customer"
     },
     {
-      "id": "69",
-      "label": "sadf",
-      "role": "sfdg"
-    },
-    {
       "id": "13",
       "label": "nome13",
+      "role": "customer"
+    },
+    {
+      "id": "69",
+      "label": "trg",
+      "role": "gdcb "
+    },
+    {
+      "id": "10",
+      "label": "nome10",
       "role": "customer"
     }
   ]

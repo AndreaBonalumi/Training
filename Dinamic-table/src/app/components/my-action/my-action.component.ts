@@ -53,7 +53,7 @@ export class MyActionComponent implements OnInit {
     window.alert("elemento aggiunto")
   }
   modificaDati(): void {
-    this.datiService.editData(this.editForm.value).subscribe()
+    this.datiService.editData(this.dato.id, this.editForm.value).subscribe()
     this.emit.emit()
     window.alert("elemento modificato")
   }
