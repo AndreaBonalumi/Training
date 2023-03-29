@@ -1,4 +1,4 @@
-<div *ngIf="form">
+<div *ngIf="action === 'edit'">
   <form [formGroup]="editForm" (ngSubmit)="modificaDati()">
     <label>Iserisci i valori per modificare il dato</label> <br>
     <ng-container *ngFor="let i of table.headers">
@@ -10,7 +10,7 @@
   </form>
 </div>
 
-<div *ngIf="!form">
+<div *ngIf="action === 'new'">
   <form #newForm="ngForm" (ngSubmit)="aggiungiDato(newForm)">
     <label>Iserisci i valori per inserire il dato</label> <br>
     <ng-container *ngFor="let i of table.headers">

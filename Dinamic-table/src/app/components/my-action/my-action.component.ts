@@ -9,6 +9,9 @@ import {MyTableConfig} from "../../interfaces/my-table-config";
 import {ButtonInterface} from "../../../../../button-custom/src/app/buttonInterface";
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import {DatiService} from "../../services/dati.service";
+import {ActivatedRoute} from "@angular/router";
+import {Location} from "@angular/common";
+
 @Component({
   selector: 'app-my-action',
   templateUrl: './my-action.component.html',
@@ -20,7 +23,6 @@ export class MyActionComponent implements OnInit {
   @Output() emit : EventEmitter<any> = new EventEmitter<any>();
   table : MyTableConfig = DatiService.getTable();
   editForm !: FormGroup;
-  form !: boolean;
   button_aggiungi : ButtonInterface = {
     text: 'Aggiungi',
     icon: 'cloud-plus',
@@ -36,11 +38,14 @@ export class MyActionComponent implements OnInit {
     class: 'secondary',
     icon: 'skip-backward'
   }
-  constructor(private fb: FormBuilder, private datiService: DatiService) {}
+  constructor(private fb: FormBuilder,
+              private datiService: DatiService,
+              private route: ActivatedRoute,
+              private location: Location) {}
   ngOnInit(): void {
-    this.form = this.action === 'edit';
+    this.action = this.route.snapshot.paramMap.get('action')!
     const controls: Record<string, FormControl> = {};
-    if(this.form){
+    if(this.action === 'edit'){
       this.table.headers.forEach((colonna) => {
         controls[colonna.key] = new FormControl(this.dato[colonna.key], Validators.required)
       });

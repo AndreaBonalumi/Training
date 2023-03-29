@@ -1,5 +1,12 @@
-<app-my-table [data]="dati" (emit)="gestisciEvento($event)"></app-my-table>
+<nav style="margin: 20px;">
+  <a routerLink=""> <app-my-button [config]="{icon: 'airplane', class: 'success', text: 'Home'}"></app-my-button></a>
+  <a routerLink="table"><app-my-button [config]="{icon: 'book', class: 'success', text: 'table'}"></app-my-button></a>
+</nav>
+<router-outlet></router-outlet>
+
+
+<!-- <app-my-table [data]="dati" (emit)="gestisciEvento($event)"></app-my-table>
 
 <app-my-action *ngIf="apriMyAction"
                 [action]="action" [dato]="dato"
-                 (emit)="evento()"></app-my-action>
+                 (emit)="evento()"></app-my-action> -->

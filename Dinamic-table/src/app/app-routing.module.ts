@@ -7,9 +7,8 @@ import {MyActionComponent} from "./components/my-action/my-action.component";
 let routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'table', component: MyTableComponent},
-  {path: 'table/new', component: MyActionComponent},
-  {path: 'table/edit', component: MyActionComponent},
-];
+  {path: ':action/:id', component: MyActionComponent},
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

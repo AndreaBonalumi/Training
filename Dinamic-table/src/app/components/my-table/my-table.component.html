@@ -9,7 +9,12 @@
    </div>
 
    <ng-container *ngFor="let azione of tableConfig.actions">
-    <app-my-button *ngIf="azione.onTop" (emitter)="emitter(azione.buttonAction.text)" [config]="azione.buttonAction"></app-my-button>
+    <a routerLink="{{azione.buttonAction.text}}">
+      <app-my-button *ngIf="azione.onTop"
+                     (emitter)="emitter(azione.buttonAction.text)"
+                     [config]="azione.buttonAction">
+      </app-my-button>
+    </a>
    </ng-container>
  </div>
 
@@ -27,10 +32,15 @@
     <tr *ngFor="let riga of parzialData">
       <td *ngFor="let colonna of tableConfig.headers">{{riga[colonna.key]}}</td>
       <td *ngFor="let azione of tableConfig.actions">
-        <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop" (emitter)="emitter(azione.buttonAction.text, riga)" [config]="azione.buttonAction"></app-my-button>
+        <a routerLink="/{{azione.buttonAction.text}}/{{riga.id}}">
+          <app-my-button *ngIf="(azione.hidden === undefined || !azione.hidden(riga)) && !azione.onTop"
+                         [config]="azione.buttonAction">
+          </app-my-button>
+        </a>
       </td>
     </tr>
   </tbody>
 </table>
 
  <app-tool-pagination [table]="tableConfig" [totalItems]="totalItems" [start]="start" (emit)="changePagination($event)"></app-tool-pagination>
+<router-outlet></router-outlet>
