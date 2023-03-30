@@ -1,23 +1,23 @@
-<div *ngIf="action === 'edit'">
-  <form [formGroup]="editForm" (ngSubmit)="modificaDati()">
-    <label>Iserisci i valori per modificare il dato</label> <br>
+<div *ngIf="isEdit">
+  <form [formGroup]="editForm" (ngSubmit)="modificaDati()" style="margin-bottom: 10px">
+    <label>{{action | uppercase}} di:</label> <br>
     <ng-container *ngFor="let i of table.headers">
       <label>{{i.label}}: </label>
       <input type="text" formControlName="{{i.key}}"/> <br>
     </ng-container>
     <app-my-button [typeButton]="'submit'" [config]="button_modifica" [isDisabled]="!editForm.valid"></app-my-button>
-    <app-my-button (emitter)="emit.emit()" [config]="button_back"></app-my-button>
   </form>
+  <app-my-button (emitter)="goBack()" [config]="button_back"></app-my-button>
 </div>
 
-<div *ngIf="action === 'new'">
-  <form #newForm="ngForm" (ngSubmit)="aggiungiDato(newForm)">
+<div *ngIf="isNew">
+  <form #newForm="ngForm" (ngSubmit)="aggiungiDato(newForm)" style="margin-bottom: 10px">
     <label>Iserisci i valori per inserire il dato</label> <br>
     <ng-container *ngFor="let i of table.headers">
       <label>{{i.label}}: </label>
       <input type="text" name="{{i.key}}" ngModel required /> <br>
     </ng-container>
     <app-my-button [typeButton]="'submit'" [config]="button_aggiungi" [isDisabled]="!newForm.valid"></app-my-button>
-    <app-my-button (emitter)="emit.emit()" [config]="button_back"></app-my-button>
   </form>
+  <app-my-button (emitter)="goBack()" [config]="button_back"></app-my-button>
 </div>

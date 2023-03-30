@@ -9,7 +9,7 @@
    </div>
 
    <ng-container *ngFor="let azione of tableConfig.actions">
-    <a routerLink="{{azione.buttonAction.text}}">
+    <a routerLink="/{{azione.buttonAction.text}}">
       <app-my-button *ngIf="azione.onTop"
                      (emitter)="emitter(azione.buttonAction.text)"
                      [config]="azione.buttonAction">

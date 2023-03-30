@@ -14,6 +14,10 @@ export class DatiService {
   getData(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+  getDato(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}`
+    return this.http.get(url)
+  }
   static getTable(): MyTableConfig {
     return TABLE;
   }
@@ -28,12 +32,12 @@ export class DatiService {
     const url = `${this.apiUrl}/${d.id}`;
     return this.http.delete(url);
   }
-  changeRole(d: any) {
+  changeRole(d: any): Observable<any> {
     if (d['role'] == 'admin')
       d['role'] = 'customer'
     else
       d['role'] = 'admin'
-    this.editData(d.id, d).subscribe()
+    return  this.editData(d.id, d)
   }
   filter(colonna: string, searchText: string): Observable<any> {
     let params = new HttpParams();

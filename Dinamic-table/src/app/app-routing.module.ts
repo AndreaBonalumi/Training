@@ -8,6 +8,7 @@ let routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'table', component: MyTableComponent},
   {path: ':action/:id', component: MyActionComponent},
+  {path: ':action', component: MyActionComponent},
   ];
 
 @NgModule({

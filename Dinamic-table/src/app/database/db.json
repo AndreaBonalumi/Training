@@ -23,7 +23,7 @@
     {
       "id": "2",
       "label": "nome2",
-      "role": "admin"
+      "role": "customer"
     },
     {
       "id": "6",
@@ -53,12 +53,7 @@
     {
       "id": "13",
       "label": "nome13",
-      "role": "customer"
-    },
-    {
-      "id": "69",
-      "label": "trg",
-      "role": "gdcb "
+      "role": "admin"
     },
     {
       "id": "10",
@@ -66,9 +61,9 @@
       "role": "customer"
     },
     {
-      "id": "B9XMKHI",
-      "label": "",
-      "role": ""
+      "id": "18",
+      "label": "Elisa",
+      "role": "admin"
     }
   ]
 }
