@@ -41,11 +41,6 @@
       "role": "admin"
     },
     {
-      "id": "-1",
-      "label": "Fabio",
-      "role": "admin"
-    },
-    {
       "id": "11",
       "label": "nome11",
       "role": "customer"
@@ -63,6 +58,16 @@
     {
       "id": "18",
       "label": "Elisa",
+      "role": "admin"
+    },
+    {
+      "id": "100",
+      "label": "non lo so",
+      "role": "customer"
+    },
+    {
+      "id": "101",
+      "label": "Fabio",
       "role": "admin"
     }
   ]
