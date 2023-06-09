@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="AlphaShop:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>AlphaShop</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="AlphaShop-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="AlphaShop:war exploded" />
+    </root>
+  </artifact>
+</component>
