@@ -17,10 +17,9 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    private List<Car> recordset;
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String getAllCar(Model model) {
-        recordset = carService.selAll();
+        List<Car> recordset = carService.selAll();
 
         model.addAttribute("Cars", recordset);
 
