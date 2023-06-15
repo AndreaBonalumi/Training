@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="edc5e6da-3877-4e69-8654-8709a966b312" name="Changes" comment="fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/alphashop/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/alphashop/controller/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springExample/src/main/webapp/WEB-INF/view/template/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../springExample/src/main/webapp/WEB-INF/view/template/header.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +28,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Si2001/Desktop/Tutorial/exampleHibernate",
+    "last_opened_file_path": "C:/Users/Si2001/Desktop/Tutorial/AlphaShop",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -48,6 +47,7 @@
       <updated>1686320394082</updated>
       <workItem from="1686320395449" duration="2767000" />
       <workItem from="1686726549138" duration="4580000" />
+      <workItem from="1686816407585" duration="102000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1686726693538</created>
