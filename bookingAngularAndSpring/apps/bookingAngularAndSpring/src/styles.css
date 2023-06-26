@@ -1,0 +1,63 @@
+/* Stile per la tabella */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Stile per le intestazioni della tabella */
+th {
+  font-weight: bold;
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Stile per le celle della tabella */
+td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Stile per le righe dispari della tabella */
+tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+/* Stile per le righe pari della tabella */
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+div {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+div.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+select {
+  margin-right: 10px;
+}
+input,
+select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+select {
+  height: calc(1.5em + 0.75rem + 2px);
+}
